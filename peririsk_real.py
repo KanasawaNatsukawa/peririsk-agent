@@ -3,22 +3,27 @@
 # 对比上次的进步：
 #   上次 —— 心率来自"造出来的正弦波"
 #   这次 —— 心率来自真实手术监护记录（VitalDB 公开数据集）
+# 重构说明：病历/摘要/DeepSeek 调用已抽到 patient.py 和 llm.py，
+# 这里只保留本脚本独有的能力——读真实波形、峰检测、对照验证。
 # 用法：python peririsk_real.py
 # ============================================================
 
 import csv
-import json
+from pathlib import Path
 
 import numpy as np
-import requests
 from scipy.signal import find_peaks
 
-from asa_risk import assess_asa
-from config import API_KEY
+from patient import PATIENT, assess_patient, build_summary
+from llm import generate_report
 
-# ---- 数据文件位置（你下载好的真实数据）----
-WAVE_FILE = r"E:\数字孪生\python\waveform_120s.csv"     # 120 秒真实波形
-NUM_FILE = r"E:\数字孪生\python\numeric_60s.csv"        # 监护仪记录的数值
+# ---- 数据文件位置 ----
+# 用"本脚本所在目录 / data"来定位，不再写死 E 盘路径：
+# __file__ 是 Python 内置变量 = 当前脚本文件的路径，
+# 这样无论从哪个文件夹启动、换哪台电脑，都能找到数据。
+DATA_DIR = Path(__file__).resolve().parent / "data"
+WAVE_FILE = DATA_DIR / "waveform_120s.csv"   # 120 秒真实波形
+NUM_FILE = DATA_DIR / "numeric_60s.csv"      # 监护仪记录的数值
 
 print("=" * 56)
 print("PeriRisk Agent 开始术前风险评估（真实数据版）")
@@ -54,66 +59,20 @@ print(f"      ✓ 监护仪记录心率 ≈ {ref_hr:.0f} 次/分钟（和算法�
 
 # ---- [4/5] 病历 + 评分 → 摘要 ----
 print("[4/5] 规则评分：结合病历计算 ASA 分级")
-# 病历信息（演示用假设数据；真实场景来自医院 HIS 系统）
-patient = {
-    "姓名": "张三",
-    "年龄": 68,
-    "冠心病": True,
-    "糖尿病": False,
-    "肾功能不全": False,
-    "病情不稳定": False,
-    "收缩压": 158,   # 来自病历（监护仪血压通道存在校准偏置，此处用病历值）
-}
-grade = assess_asa(
-    patient["年龄"],
-    patient["冠心病"],
-    patient["糖尿病"],
-    patient["肾功能不全"],
-    patient["病情不稳定"],
-)
+grade = assess_patient(PATIENT)
 print(f"      ✓ 完成：ASA {grade}")
 
-summary = (
-    f"患者{patient['姓名']}，{patient['年龄']}岁，"
-    f"ASA分级（程序计算）：{grade}，"
-    f"心率 {hr_est:.0f} 次/分钟（由真实手术监护波形自动计算，"
-    f"与监护仪记录 {ref_hr:.0f} 次/分钟一致），"
-    f"收缩压 {patient['收缩压']} mmHg（来自病历），"
-    f"既往史：冠心病{'是' if patient['冠心病'] else '否'}、"
-    f"糖尿病{'是' if patient['糖尿病'] else '否'}。"
+summary = build_summary(
+    PATIENT, grade, hr_est,
+    hr_note=f"（由真实手术监护波形自动计算，与监护仪记录 {ref_hr:.0f} 次/分钟一致）",
+    sbp_note="（来自病历）",
 )
 
 # ---- [5/5] 大模型生成报告 ----
 print("[5/5] 调用大模型生成风险评估报告…")
-resp = requests.post(
-    "https://api.deepseek.com/chat/completions",
-    headers={
-        "Authorization": "Bearer " + API_KEY,
-        "Content-Type": "application/json",
-    },
-    data=json.dumps({
-        "model": "deepseek-chat",
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "你是一名资深麻醉科医生。请根据患者信息输出一份术前风险评估报告，"
-                    "格式必须包含三部分：【风险评估】【麻醉关注点】【建议】。"
-                    "必须引用给出的数值，不要编造患者没有的病史。"
-                ),
-            },
-            {"role": "user", "content": "患者信息如下，请出报告：" + summary},
-        ],
-    }),
-    timeout=30,
-)
+report = generate_report(summary)
 
 print("=" * 56)
-if resp.status_code == 200:
-    data = resp.json()
-    print(data["choices"][0]["message"]["content"])
-else:
-    print("请求失败，状态码：", resp.status_code)
-    print("返回内容：", resp.text)
+print(report)
 print("=" * 56)
 print("PeriRisk Agent 评估完成（数据来源：VitalDB 真实手术监护记录）")
