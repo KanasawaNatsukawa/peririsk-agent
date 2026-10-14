@@ -18,22 +18,23 @@ def assess_asa(age, has_heart_disease, has_diabetes, has_kidney_failure, unstabl
     return "I 级（健康）"
 
 
-# ---- 2) 模拟一个患者（字典 = 一张"患者档案卡"）----
-patient = {
-    "姓名": "张三",
-    "年龄": 68,
-    "冠心病": True,       # 有冠心病史
-    "糖尿病": False,
-    "肾功能不全": False,
-    "病情不稳定": False,
-}
-
-# ---- 3) 调用函数，把结果打印出来 ----
-grade = assess_asa(
-    patient["年龄"],
-    patient["冠心病"],
-    patient["糖尿病"],
-    patient["肾功能不全"],
-    patient["病情不稳定"],
-)
-print(f"患者 {patient['姓名']}（{patient['年龄']} 岁）→ ASA {grade}")
+# ---- 2) 演示代码：直接运行本文件时才执行（python asa_risk.py 可看到效果）----
+# 包在 __main__ 保护里：被别的模块 import 时不会执行，避免打印干扰主流程
+if __name__ == "__main__":
+    # 模拟一个患者（字典 = 一张"患者档案卡"）
+    patient = {
+        "姓名": "张三",
+        "年龄": 68,
+        "冠心病": True,       # 有冠心病史
+        "糖尿病": False,
+        "肾功能不全": False,
+        "病情不稳定": False,
+    }
+    grade = assess_asa(
+        patient["年龄"],
+        patient["冠心病"],
+        patient["糖尿病"],
+        patient["肾功能不全"],
+        patient["病情不稳定"],
+    )
+    print(f"患者 {patient['姓名']}（{patient['年龄']} 岁）→ ASA {grade}")
