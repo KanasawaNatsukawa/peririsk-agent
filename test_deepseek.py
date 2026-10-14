@@ -6,12 +6,9 @@
 
 # 1) 导入 openai 库（刚才装好的"电话线"）
 from openai import OpenAI
+from config import API_KEY        # key 统一从 config.py 读取（该文件已被 .gitignore 保护，不进仓库）
 
-# 2) 【唯一需要你动手的地方】粘贴你的 DeepSeek API Key
-#    去 platform.deepseek.com → API keys → 创建，复制 sk- 开头那串
-API_KEY = "sk-93e394b84b954cae96d55e8d26157c35"
-
-# 3) 建立连接 DeepSeek 的客户端（DeepSeek 接口与 OpenAI 兼容，只需改地址）
+# 2) 建立连接 DeepSeek 的客户端（DeepSeek 接口与 OpenAI 兼容，只需改地址）
 client = OpenAI(api_key=API_KEY, base_url="https://api.deepseek.com")
 
 # 4) 发一条消息给 DeepSeek，等它回复

@@ -8,10 +8,7 @@
 import json
 import requests
 from asa_risk import assess_asa   # 复用第 3 步的评分函数
-
-# ---- 0) 在这里粘贴你的 key ----
-# ⚠️ 注意：引号里只能有 sk- 开头那串字符，不要带空格、不要带中文、不要带注释
-API_KEY = "sk-93e394b84b954cae96d55e8d26157c35"
+from config import API_KEY        # key 统一从 config.py 读取（该文件已被 .gitignore 保护，不进仓库）
 
 # ---- 1) 患者信息 ----
 patient = {
