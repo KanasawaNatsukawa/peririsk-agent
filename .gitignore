@@ -1,0 +1,10 @@
+# API 密钥 —— 绝不提交！(里面是 DeepSeek API Key)
+config.py
+
+# Python 自动生成的缓存
+__pycache__/
+*.pyc
+
+# 系统临时文件
+.DS_Store
+Thumbs.db
