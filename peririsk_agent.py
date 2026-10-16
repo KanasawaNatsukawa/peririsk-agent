@@ -197,16 +197,30 @@ SYSTEM_PROMPT = (
 MAX_ROUNDS = 8   # 安全阀：防止大脑陷入死循环烧钱
 
 
-def run_agent(task):
-    """Agent 主循环。返回 (最终报告, 思考轮数)。"""
+def run_agent(task, on_event=None):
+    """Agent 主循环。返回 (最终报告, 思考轮数)。
+
+    on_event: 可选回调函数，每发生一件事就调一次，传一个事件 dict 进去。
+      - 不传（命令行运行）→ 走原来的彩色打印 + loading 动画
+      - 传了（Web 端运行）→ 改为把事件喂给界面，不在终端打印
+    这样 Agent 的循环逻辑只写这一份，CLI 和 Web 共用。
+    """
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": task},
     ]
     for round_no in range(1, MAX_ROUNDS + 1):
-        print(f"{BLUE}{BOLD}[思考轮 {round_no}]{RESET}{BLUE} 询问大脑下一步…{RESET}")
-        with Spinner("正在询问大脑…"):
+        # —— 1) 通知：进入第 N 轮思考 ——
+        if on_event:
+            on_event({"type": "round", "round_no": round_no})
+        else:
+            print(f"{BLUE}{BOLD}[思考轮 {round_no}]{RESET}{BLUE} 询问大脑下一步…{RESET}")
+        # —— 2) 问大脑下一步（CLI 有转圈动画，Web 端由界面自己显示进度） ——
+        if on_event:
             msg = chat_with_tools(messages, TOOLS)
+        else:
+            with Spinner("正在询问大脑…"):
+                msg = chat_with_tools(messages, TOOLS)
         calls = msg.get("tool_calls")
         if not calls:
             # 大脑不再点名工具 = 它认为信息够了，content 就是最终报告
@@ -216,13 +230,24 @@ def run_agent(task):
         for call in calls:
             name = call["function"]["name"]
             args = json.loads(call["function"]["arguments"] or "{}")
-            print(f"{YELLOW}      → 调用工具 {name}({args}){RESET}")
+            # —— 3) 通知：大脑点名了工具 ——
+            if on_event:
+                on_event({"type": "tool_call", "name": name, "args": args})
+            else:
+                print(f"{YELLOW}      → 调用工具 {name}({args}){RESET}")
             try:
-                with Spinner(f"正在执行 {name}…"):
+                if on_event:
                     result = TOOL_FUNCTIONS[name](**args)     # 真正执行的永远是我们本地
+                else:
+                    with Spinner(f"正在执行 {name}…"):
+                        result = TOOL_FUNCTIONS[name](**args)
             except Exception as exc:                          # 出错也喂回去，让大脑自己纠错
                 result = {"错误": f"{name} 执行失败：{exc}"}
-            print(f"{GREEN}      ✓ 返回：{result}{RESET}")
+            # —— 4) 通知：工具返回结果 ——
+            if on_event:
+                on_event({"type": "tool_result", "name": name, "result": result})
+            else:
+                print(f"{GREEN}      ✓ 返回：{result}{RESET}")
             messages.append({
                 "role": "tool",
                 "tool_call_id": call["id"],               # 凭这个 id 和点名单对账
