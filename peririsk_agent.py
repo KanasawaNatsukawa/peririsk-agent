@@ -13,6 +13,10 @@
 
 import csv
 import json
+import os
+import sys
+import threading
+import time
 from pathlib import Path
 
 import numpy as np
@@ -26,6 +30,56 @@ from llm import chat_with_tools
 DATA_DIR = Path(__file__).resolve().parent / "data"
 WAVE_FILE = DATA_DIR / "waveform_120s.csv"
 NUM_FILE = DATA_DIR / "numeric_60s.csv"
+
+# ---- 终端着色 + loading 动画 ----
+# Windows 下默认没开 ANSI 转义，调一次空命令激活 VT 处理（Win10+ 才支持彩色）
+if os.name == "nt":
+    os.system("")
+
+# 颜色常量（ANSI 转义码）
+BLUE = "\033[34m"      # 思考轮
+YELLOW = "\033[33m"    # 调用工具
+GREEN = "\033[32m"     # 工具结果
+CYAN = "\033[36m"      # 标题 / 信息
+BOLD = "\033[1m"
+RESET = "\033[0m"
+
+
+class Spinner:
+    """命令行 loading 动画。包住会阻塞的调用（请求大脑、跑工具）。
+
+    用法：
+        with Spinner("正在分析波形…"):
+            result = 阻塞调用()
+    动画在后台线程转圈，主线程阻塞期间用户不会以为程序卡死。
+    """
+    FRAMES = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
+
+    def __init__(self, text):
+        self.text = text
+        self._stop = False
+        self._thread = None
+
+    def _spin(self):
+        i = 0
+        while not self._stop:
+            sys.stdout.write(f"\r{CYAN}{self.text} {self.FRAMES[i % len(self.FRAMES)]}{RESET}")
+            sys.stdout.flush()
+            time.sleep(0.08)
+            i += 1
+        # 退出时清掉这一行，免得和后面的输出挤在一起
+        sys.stdout.write("\r" + " " * (len(self.text) + 4) + "\r")
+        sys.stdout.flush()
+
+    def __enter__(self):
+        self._thread = threading.Thread(target=self._spin, daemon=True)
+        self._thread.start()
+        return self
+
+    def __exit__(self, *exc):
+        self._stop = True
+        if self._thread:
+            self._thread.join()
 
 
 # ============================================================
@@ -150,8 +204,9 @@ def run_agent(task):
         {"role": "user", "content": task},
     ]
     for round_no in range(1, MAX_ROUNDS + 1):
-        print(f"[思考轮 {round_no}] 询问大脑下一步…")
-        msg = chat_with_tools(messages, TOOLS)
+        print(f"{BLUE}{BOLD}[思考轮 {round_no}]{RESET}{BLUE} 询问大脑下一步…{RESET}")
+        with Spinner("正在询问大脑…"):
+            msg = chat_with_tools(messages, TOOLS)
         calls = msg.get("tool_calls")
         if not calls:
             # 大脑不再点名工具 = 它认为信息够了，content 就是最终报告
@@ -161,12 +216,13 @@ def run_agent(task):
         for call in calls:
             name = call["function"]["name"]
             args = json.loads(call["function"]["arguments"] or "{}")
-            print(f"      → 调用工具 {name}({args})")
+            print(f"{YELLOW}      → 调用工具 {name}({args}){RESET}")
             try:
-                result = TOOL_FUNCTIONS[name](**args)     # 真正执行的永远是我们本地
-            except Exception as exc:                      # 出错也喂回去，让大脑自己纠错
+                with Spinner(f"正在执行 {name}…"):
+                    result = TOOL_FUNCTIONS[name](**args)     # 真正执行的永远是我们本地
+            except Exception as exc:                          # 出错也喂回去，让大脑自己纠错
                 result = {"错误": f"{name} 执行失败：{exc}"}
-            print(f"      ✓ 返回：{result}")
+            print(f"{GREEN}      ✓ 返回：{result}{RESET}")
             messages.append({
                 "role": "tool",
                 "tool_call_id": call["id"],               # 凭这个 id 和点名单对账
@@ -175,15 +231,35 @@ def run_agent(task):
     return "（达到最大思考轮数，强制停止）", MAX_ROUNDS
 
 
+def print_report(report):
+    """把大脑返回的报告轻轻排版：标题着色、ASA 分级行高亮突出。
+
+    报告是 LLM 自由生成的 markdown，逐行扫一遍：标题行青色加粗，
+    含 ASA 的行黄色加粗——答辩时观众一眼就能看到分级结论。
+    """
+    for line in report.splitlines():
+        if line.startswith("#"):
+            print(f"{BOLD}{CYAN}{line}{RESET}")
+        elif "ASA" in line:
+            print(f"{BOLD}{YELLOW}{line}{RESET}")
+        else:
+            print(line)
+
+
 # ============================================================
 # 启动
 # ============================================================
 if __name__ == "__main__":
-    print("=" * 56)
-    print("PeriRisk Agent（自主调度版）开始术前风险评估")
-    print("=" * 56)
-    report, rounds = run_agent("请为下一位患者完成术前风险评估并输出报告。")
-    print("=" * 56)
-    print(report)
-    print("=" * 56)
-    print(f"PeriRisk Agent 评估完成（共 {rounds} 轮思考）")
+    # 命令行带提示词就用提示词，否则用默认任务，方便快速测试不同输入
+    task = sys.argv[1] if len(sys.argv) > 1 else "请为下一位患者完成术前风险评估并输出报告。"
+    print(f"{BOLD}{CYAN}{'═' * 56}{RESET}")
+    print(f"{BOLD}{CYAN}  PeriRisk Agent（自主调度版）开始术前风险评估{RESET}")
+    print(f"{CYAN}  任务：{task}{RESET}")
+    print(f"{BOLD}{CYAN}{'═' * 56}{RESET}")
+    report, rounds = run_agent(task)
+    print(f"{BOLD}{CYAN}{'═' * 56}{RESET}")
+    print(f"{BOLD}{CYAN}  术前风险评估报告（最终）{RESET}")
+    print(f"{BOLD}{CYAN}{'═' * 56}{RESET}")
+    print_report(report)
+    print(f"{BOLD}{CYAN}{'═' * 56}{RESET}")
+    print(f"{GREEN}{BOLD}PeriRisk Agent 评估完成（共 {rounds} 轮思考）{RESET}")
