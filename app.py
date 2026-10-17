@@ -11,6 +11,8 @@ import time
 import streamlit as st
 
 # 直接复用 Agent 的主循环——工具、说明书、循环逻辑全在 peririsk_agent 里
+import patient
+import peririsk_agent as agent     # 用来在开跑前切换"当前患者"，Agent 本身一行不改
 from peririsk_agent import run_agent
 
 st.set_page_config(
@@ -102,8 +104,17 @@ class ThoughtRenderer:
             time.sleep(0.5)
 
 
+# ---- 患者选择：在高/低风险两个患者之间切换 ----
+# 花名册（标签 → 档案卡）在 patient.py 里维护，这里只负责选
+patient_label = st.selectbox("选择评估患者", list(patient.PATIENTS.keys()))
+
 # ---- 中间一个大按钮 ----
 if st.button("开始术前风险评估", use_container_width=True):
+    # 把 Agent 的"查病历"工具读取的那张卡换成选中的患者。
+    # 原理：get_patient_record() 内部读的是 peririsk_agent 模块里的全局 PATIENT，
+    # 函数执行时才按名字查找，所以开跑前给 agent.PATIENT 赋新值就能换患者——
+    # 工具定义、工具参数和 Agent 主循环一行都不用动。
+    agent.PATIENT = patient.PATIENTS[patient_label]
     # 区域标题：小号灰色"Agent 思考过程"
     st.markdown(
         '<p style="color:#666666;font-size:0.9em;margin:0.6em 0 0.2em;">Agent 思考过程</p>',

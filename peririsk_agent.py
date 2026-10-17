@@ -117,9 +117,14 @@ def analyze_waveform(segment_seconds=30):
     }
 
 
-def assess_asa_grade(age, coronary_heart_disease, diabetes, kidney_failure, unstable):
-    """工具 3：ASA 规则引擎。参数由大脑从病历里挑出来填进去。"""
-    grade = assess_asa(age, coronary_heart_disease, diabetes, kidney_failure, unstable)
+def assess_asa_grade(age, coronary_heart_disease, diabetes, kidney_failure, unstable,
+                     systolic_bp=None):
+    """工具 3：ASA 规则引擎。参数由大脑从病历里挑出来填进去。
+
+    systolic_bp 是病历里的收缩压，规则引擎会把高血压纳入分级（血压地板）。
+    """
+    grade = assess_asa(age, coronary_heart_disease, diabetes, kidney_failure, unstable,
+                       systolic_bp)
     return {"ASA分级": grade}
 
 
@@ -165,7 +170,7 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "assess_asa_grade",
-            "description": "根据患者情况计算 ASA 麻醉分级。调用前需要先查病历拿到各项信息。",
+            "description": "根据患者情况计算 ASA 麻醉分级，已把收缩压（高血压）纳入判断。调用前需要先查病历拿到各项信息。",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -174,8 +179,9 @@ TOOLS = [
                     "diabetes": {"type": "boolean", "description": "是否有糖尿病"},
                     "kidney_failure": {"type": "boolean", "description": "是否有肾功能不全"},
                     "unstable": {"type": "boolean", "description": "病情是否不稳定"},
+                    "systolic_bp": {"type": "integer", "description": "收缩压（mmHg），来自病历"},
                 },
-                "required": ["age", "coronary_heart_disease", "diabetes", "kidney_failure", "unstable"],
+                "required": ["age", "coronary_heart_disease", "diabetes", "kidney_failure", "unstable", "systolic_bp"],
             },
         },
     },
@@ -190,8 +196,22 @@ SYSTEM_PROMPT = (
     "你是术前风险评估协调员。请按需调用工具收集信息："
     "① 查病历；② 分析监护波形得到心率；③ 计算 ASA 分级。"
     "信息收集齐后，停止调用工具，直接输出一份术前风险评估报告，"
-    "格式包含三部分：【风险评估】【麻醉关注点】【建议】。"
-    "必须引用工具返回的真实数值，不要编造。"
+    "格式包含三部分：【风险评估】【麻醉关注点】【建议】。\n"
+    "数据引用规则（必须严格遵守）：\n"
+    "1. 报告中【每一条结论】的句末，都要用括号附上它实际引用的工具返回值，例如："
+    "（依据：病历工具返回 年龄68岁、收缩压158mmHg；心率工具返回 算法心率88.0次/分；"
+    "ASA规则引擎判定 III级）。\n"
+    "2. 依据只能来自本次工具调用在对话中真实返回的字段，数值逐字照抄，"
+    "禁止编造、推测或引用任何工具没有返回的信息。注意：结论正文和依据里都不许出现"
+    "工具未返回的信息——工具不返回性别（绝不能写\"男性/女性\"）、舒张压、高血压诊断、"
+    "冠脉造影结果等，这些一律不能写。布尔值一律写成\"有/无\"或\"是/否\"，"
+    "不要直接出现 true/false 字样。\n"
+    "3. 三个工具返回的字段仅限于："
+    "病历工具 get_patient_record（姓名、年龄、冠心病、糖尿病、肾功能不全、病情不稳定、收缩压）；"
+    "心率工具 analyze_waveform（分析时长秒、检测心跳次数、算法心率、监护仪对照心率）；"
+    "ASA规则引擎 assess_asa_grade（ASA分级）。\n"
+    "4. 某条结论找不到工具返回值支撑，就不要写这条结论；工具没返回的信息不要出现在依据里。\n"
+    "5. 三段式结构和现有措辞风格保持不变，只在每条结论句末补括号依据，不要单独罗列数据清单。"
 )
 
 MAX_ROUNDS = 8   # 安全阀：防止大脑陷入死循环烧钱

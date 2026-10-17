@@ -16,6 +16,24 @@ PATIENT = {
     "收缩压": 158,   # 来自病历（监护仪血压通道存在校准偏置，此处用病历值）
 }
 
+# ---- 对比患者：低风险（字段与 PATIENT 完全一致，演示同一套 Agent 对不同患者的差异）----
+PATIENT_LOW_RISK = {
+    "姓名": "李四",
+    "年龄": 45,
+    "冠心病": False,
+    "糖尿病": False,
+    "肾功能不全": False,
+    "病情不稳定": False,
+    "收缩压": 120,   # 正常血压
+}
+
+# ---- 患者花名册：界面下拉框按"标签 → 档案卡"切换 ----
+# 第一项是默认的高风险患者，保证不选时行为和以前完全一样
+PATIENTS = {
+    "高风险患者 · 张三（68岁，冠心病）": PATIENT,
+    "低风险患者 · 李四（45岁，既往健康）": PATIENT_LOW_RISK,
+}
+
 
 def assess_patient(patient):
     """直接吃一张患者档案卡（dict），内部转调规则引擎 assess_asa。
@@ -28,6 +46,7 @@ def assess_patient(patient):
         patient["糖尿病"],
         patient["肾功能不全"],
         patient["病情不稳定"],
+        patient["收缩压"],
     )
 
 
