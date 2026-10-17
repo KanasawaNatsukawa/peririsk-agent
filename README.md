@@ -4,6 +4,16 @@
 
 > 教学/演示用，不是医疗器械，不构成医疗建议。ASA 分级逻辑是简化版，跟临床完整标准有差异。
 
+## 界面预览
+
+选择患者后，Agent 自主依次调用「查病历 → 波形心率检测 → ASA 规则分级」，思考过程与每次工具返回逐条可见：
+
+![Agent 思考过程与工具调用轨迹](images/ui_thinking.png)
+
+信息集齐后生成三段式报告（风险评估 / 麻醉关注点 / 建议），每条结论句末标注引用的工具返回依据：
+
+![三段式术前风险评估报告](images/ui_report.png)
+
 ## 怎么用
 
 1. 装依赖：`pip install requests scipy numpy matplotlib streamlit`
