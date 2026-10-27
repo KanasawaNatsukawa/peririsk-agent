@@ -1,0 +1,6 @@
+﻿waveform_id,case_id,source,window_start_epoch,window_seconds,pleth_points,valid_hr_readings,valid_pleth_hr_readings,algorithm_hr,solar_hr,pleth_hr,same_source_diff,cross_source_diff
+case_001,1,E:\数字孪生\python\1.parquet,4102444802.0,60,30000,24,30,87.0,82.6,87.8,0.8,4.4
+case_002,2,https://api.vitaldb.net/1.0.1/2.vital,4102444804.0,60,30000,30,30,79.0,78.0,80.4,1.4,1.0
+case_003,3,https://api.vitaldb.net/1.0.1/3.vital,4102444801.0,60,30000,30,30,71.0,70.7,71.4,0.4,0.3
+case_004,4,https://api.vitaldb.net/1.0.1/4.vital,4102444803.0,60,30000,30,30,85.0,85.5,86.2,1.2,0.5
+case_005,5,https://api.vitaldb.net/1.0.1/5.vital,4102444803.0,60,30000,30,30,98.0,101.1,101.8,3.8,3.1

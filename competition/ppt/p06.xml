@@ -1,0 +1,111 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill>
+      <fillColor color="rgba(255, 255, 255, 1)" />
+    </fill>
+  </style>
+  <data>
+    <shape type="text" topLeftX="27" topLeftY="20" width="880" height="40">
+      <content fontSize="32" fontFamily="Microsoft YaHei" color="rgba(192, 0, 0, 1)" textAlign="left" verticalAlign="top" lineSpacing="fixed:40">
+        <p>技术架构：大模型决策 + 本地计算</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="30" topLeftY="228" width="150" height="96" presetHandlers="12">
+      <fill><fillColor color="rgba(255, 255, 255, 1)" /></fill>
+      <border color="rgba(113, 113, 101, 1)" width="1" />
+    </shape>
+    <shape type="text" topLeftX="44" topLeftY="238" width="124" height="76">
+      <content fontSize="13" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="center" verticalAlign="middle" lineSpacing="multiple:1.4">
+        <p><span bold="true">输入</span></p>
+        <p>结构化病历</p>
+        <p>监护波形 PPG</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="200" topLeftY="80" width="560" height="100" presetHandlers="12">
+      <fill><fillColor color="rgba(0, 112, 192, 0.06)" /></fill>
+      <border color="rgba(113, 113, 101, 1)" width="1" />
+    </shape>
+    <shape type="text" topLeftX="220" topLeftY="92" width="520" height="30">
+      <content fontSize="16" fontFamily="Microsoft YaHei" color="rgba(0, 112, 192, 1)" textAlign="left" verticalAlign="top" lineSpacing="multiple:1.2">
+        <p>应用层 · Agent 主循环</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="220" topLeftY="128" width="520" height="44">
+      <content fontSize="13" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left" verticalAlign="top" lineSpacing="multiple:1.4">
+        <p>自主拆解任务、调用工具、回填结果；8 轮对话安全阀兜底，防循环失控</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="200" topLeftY="196" width="560" height="140" presetHandlers="12">
+      <fill><fillColor color="rgba(0, 112, 192, 0.06)" /></fill>
+      <border color="rgba(113, 113, 101, 1)" width="1" />
+    </shape>
+    <shape type="text" topLeftX="220" topLeftY="208" width="520" height="30">
+      <content fontSize="16" fontFamily="Microsoft YaHei" color="rgba(0, 112, 192, 1)" textAlign="left" verticalAlign="top" lineSpacing="multiple:1.2">
+        <p>工具层 · Function Calling 工具链</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="220" topLeftY="244" width="520" height="84">
+      <content fontSize="13" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left" verticalAlign="top" lineSpacing="multiple:1.4">
+        <p>① get_patient_record：病历查询</p>
+        <p>② analyze_waveform：PPG 波形峰值法计算心率</p>
+        <p>③ assess_asa_grade：ASA 分级规则引擎</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="200" topLeftY="352" width="560" height="100" presetHandlers="12">
+      <fill><fillColor color="rgba(0, 112, 192, 0.06)" /></fill>
+      <border color="rgba(113, 113, 101, 1)" width="1" />
+    </shape>
+    <shape type="text" topLeftX="220" topLeftY="364" width="520" height="30">
+      <content fontSize="16" fontFamily="Microsoft YaHei" color="rgba(0, 112, 192, 1)" textAlign="left" verticalAlign="top" lineSpacing="multiple:1.2">
+        <p>数据模型层</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="220" topLeftY="400" width="520" height="44">
+      <content fontSize="13" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left" verticalAlign="top" lineSpacing="multiple:1.4">
+        <p>DeepSeek 生成三段式报告 · VitalDB 公开数据 · Python(scipy) 本地算数值</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="790" topLeftY="228" width="150" height="96" presetHandlers="12">
+      <fill><fillColor color="rgba(255, 255, 255, 1)" /></fill>
+      <border color="rgba(113, 113, 101, 1)" width="1" />
+    </shape>
+    <shape type="text" topLeftX="804" topLeftY="238" width="124" height="76">
+      <content fontSize="13" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="center" verticalAlign="middle" lineSpacing="multiple:1.4">
+        <p><span bold="true">三段式报告</span></p>
+        <p>风险评估</p>
+        <p>麻醉关注点</p>
+        <p>建议</p>
+      </content>
+    </shape>
+    <line startX="180" startY="276" endX="200" endY="276">
+      <border color="rgba(111, 111, 111, 1)" width="1" />
+      <endArrow type="arrow" widthScale="med" heightScale="med" />
+    </line>
+    <line startX="480" startY="180" endX="480" endY="196">
+      <border color="rgba(111, 111, 111, 1)" width="1" />
+      <endArrow type="arrow" widthScale="med" heightScale="med" />
+    </line>
+    <line startX="480" startY="336" endX="480" endY="352">
+      <border color="rgba(111, 111, 111, 1)" width="1" />
+      <endArrow type="arrow" widthScale="med" heightScale="med" />
+    </line>
+    <line startX="760" startY="276" endX="790" endY="276">
+      <border color="rgba(111, 111, 111, 1)" width="1" />
+      <endArrow type="arrow" widthScale="med" heightScale="med" />
+    </line>
+    <img src="MosgbT0mDo7SuXxSKCKcmQxTnIh" width="19.8" height="19.8" topLeftX="816.5" topLeftY="510">
+      <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+    </img>
+    <img src="S3yZbS4JjoogcsxVJjMcPFf5nTg" width="69.9" height="15.6" topLeftX="839.5" topLeftY="510.5">
+      <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+    </img>
+  </data>
+  <note>
+    <content fontSize="14">
+      <p>这一页讲技术可行性：整体是"大模型决策 + 本地计算"的三层架构。</p>
+      <p>应用层是 Agent 主循环，负责自主拆解任务和调度工具，并带 8 轮安全阀防失控。</p>
+      <p>工具层有三个函数：查病历、波形心率检测、ASA 规则分级，信号处理和规则判定都在本地完成，不靠模型猜。</p>
+      <p>数据模型层用 DeepSeek 生成报告、VitalDB 提供公开波形、Python 做数值计算。</p>
+    </content>
+  </note>
+</slide>

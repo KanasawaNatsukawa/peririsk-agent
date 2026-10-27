@@ -1,0 +1,284 @@
+﻿{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "content_saved": true,
+    "issues": {
+      "document": {
+        "errors": [],
+        "infos": [],
+        "warnings": []
+      },
+      "file": null,
+      "schema_version": "2.0",
+      "slide_size": {
+        "height": 540,
+        "width": 960
+      },
+      "slides": [
+        {
+          "element_count": 3,
+          "errors": [],
+          "infos": [],
+          "issues": [],
+          "slide_number": 1,
+          "status": "passed",
+          "warnings": []
+        },
+        {
+          "element_count": 14,
+          "errors": [
+            {
+              "available_height": 152.8,
+              "code": "text_may_overflow_shape",
+              "element_ids": [
+                "bHU"
+              ],
+              "elements": [
+                "bHU"
+              ],
+              "estimated_height": 160,
+              "hint": "Locate via related_objects[].xml_path. Increase shape.height, reduce the text, or set content wrap=\"true\" autoFit=\"normal-auto-fit\" (autoFit shrinks the font to fit; wrap is already the default). This is an estimate based on font size, line spacing, and wrapped line count.",
+              "level": "error",
+              "line_count": 7,
+              "line_height": 24,
+              "measurement": {
+                "available_height": 152.8,
+                "estimated_height": 160,
+                "line_count": 7,
+                "line_height": 24,
+                "overflow": 7.199999999999989
+              },
+              "message": "text shape bHU may overflow its own content box (estimated 160px, available 152.8px); consider setting content wrap=\"true\" autoFit=\"normal-auto-fit\"",
+              "overflow": 7.199999999999989,
+              "overflow_axis": "height",
+              "related_objects": [
+                {
+                  "bbox": {
+                    "height": 160,
+                    "width": 400,
+                    "x": 47,
+                    "y": 230
+                  },
+                  "element_id": "bHU",
+                  "kind": "shape",
+                  "type": "text",
+                  "xml_path": "slide[2]/data/shape[9]"
+                }
+              ],
+              "rule": {
+                "comparison": "estimated_height \u003c= available_height",
+                "id": "text_may_overflow_shape",
+                "name": "estimated_text_fits_declared_shape"
+              },
+              "schema_version": "2.0",
+              "target": {
+                "slide_number": 2
+              }
+            },
+            {
+              "code": "image_covers_text",
+              "element_ids": [
+                "bHw",
+                "bHM"
+              ],
+              "elements": [
+                "bHw",
+                "bHM"
+              ],
+              "hint": "Locate via related_objects[].xml_path. Adjust the image and text shape coordinates or dimensions so the image no longer overlaps the text glyph area.",
+              "level": "error",
+              "measurement": {
+                "violation_count": 1
+              },
+              "message": "image bHw covers text shape bHM",
+              "related_objects": [
+                {
+                  "bbox": {
+                    "height": 15.590551181102363,
+                    "width": 69.94685039370079,
+                    "x": 839.4658267716535,
+                    "y": 510.50637795275594
+                  },
+                  "element_id": "bHw",
+                  "kind": "img",
+                  "type": "img",
+                  "xml_path": "slide[2]/data/img[2]"
+                },
+                {
+                  "bbox": {
+                    "height": 32.4,
+                    "width": 115.2,
+                    "x": 837.6,
+                    "y": 500.40000000000003
+                  },
+                  "element_id": "bHM",
+                  "kind": "shape",
+                  "type": "text",
+                  "xml_path": "slide[2]/data/shape[10]"
+                }
+              ],
+              "rule": {
+                "comparison": "intersection_area == 0",
+                "id": "image_covers_text",
+                "name": "image_does_not_cover_text"
+              },
+              "schema_version": "2.0",
+              "target": {
+                "slide_number": 2
+              }
+            }
+          ],
+          "infos": [],
+          "issues": [
+            {
+              "available_height": 152.8,
+              "code": "text_may_overflow_shape",
+              "element_ids": [
+                "bHU"
+              ],
+              "elements": [
+                "bHU"
+              ],
+              "estimated_height": 160,
+              "hint": "Locate via related_objects[].xml_path. Increase shape.height, reduce the text, or set content wrap=\"true\" autoFit=\"normal-auto-fit\" (autoFit shrinks the font to fit; wrap is already the default). This is an estimate based on font size, line spacing, and wrapped line count.",
+              "level": "error",
+              "line_count": 7,
+              "line_height": 24,
+              "measurement": {
+                "available_height": 152.8,
+                "estimated_height": 160,
+                "line_count": 7,
+                "line_height": 24,
+                "overflow": 7.199999999999989
+              },
+              "message": "text shape bHU may overflow its own content box (estimated 160px, available 152.8px); consider setting content wrap=\"true\" autoFit=\"normal-auto-fit\"",
+              "overflow": 7.199999999999989,
+              "overflow_axis": "height",
+              "related_objects": [
+                {
+                  "bbox": {
+                    "height": 160,
+                    "width": 400,
+                    "x": 47,
+                    "y": 230
+                  },
+                  "element_id": "bHU",
+                  "kind": "shape",
+                  "type": "text",
+                  "xml_path": "slide[2]/data/shape[9]"
+                }
+              ],
+              "rule": {
+                "comparison": "estimated_height \u003c= available_height",
+                "id": "text_may_overflow_shape",
+                "name": "estimated_text_fits_declared_shape"
+              },
+              "schema_version": "2.0",
+              "target": {
+                "slide_number": 2
+              }
+            },
+            {
+              "code": "image_covers_text",
+              "element_ids": [
+                "bHw",
+                "bHM"
+              ],
+              "elements": [
+                "bHw",
+                "bHM"
+              ],
+              "hint": "Locate via related_objects[].xml_path. Adjust the image and text shape coordinates or dimensions so the image no longer overlaps the text glyph area.",
+              "level": "error",
+              "measurement": {
+                "violation_count": 1
+              },
+              "message": "image bHw covers text shape bHM",
+              "related_objects": [
+                {
+                  "bbox": {
+                    "height": 15.590551181102363,
+                    "width": 69.94685039370079,
+                    "x": 839.4658267716535,
+                    "y": 510.50637795275594
+                  },
+                  "element_id": "bHw",
+                  "kind": "img",
+                  "type": "img",
+                  "xml_path": "slide[2]/data/img[2]"
+                },
+                {
+                  "bbox": {
+                    "height": 32.4,
+                    "width": 115.2,
+                    "x": 837.6,
+                    "y": 500.40000000000003
+                  },
+                  "element_id": "bHM",
+                  "kind": "shape",
+                  "type": "text",
+                  "xml_path": "slide[2]/data/shape[10]"
+                }
+              ],
+              "rule": {
+                "comparison": "intersection_area == 0",
+                "id": "image_covers_text",
+                "name": "image_does_not_cover_text"
+              },
+              "schema_version": "2.0",
+              "target": {
+                "slide_number": 2
+              }
+            }
+          ],
+          "slide_number": 2,
+          "status": "blocked",
+          "warnings": []
+        },
+        {
+          "element_count": 12,
+          "errors": [],
+          "infos": [],
+          "issues": [],
+          "slide_number": 3,
+          "status": "passed",
+          "warnings": []
+        },
+        {
+          "element_count": 10,
+          "errors": [],
+          "infos": [],
+          "issues": [],
+          "slide_number": 4,
+          "status": "passed",
+          "warnings": []
+        },
+        {
+          "element_count": 3,
+          "errors": [],
+          "infos": [],
+          "issues": [],
+          "slide_number": 5,
+          "status": "passed",
+          "warnings": []
+        }
+      ],
+      "summary": {
+        "error_count": 2,
+        "info_count": 0,
+        "release_ready": false,
+        "screenshot_review_required": false,
+        "slide_count": 5,
+        "status": "blocked",
+        "warning_count": 0
+      },
+      "tool": "xml_lint"
+    },
+    "path": "C:\\Users\\唐泽夏川\\Doubao\\chats\\2026-09-28\\new-chat\\peririsk-demo\\ojw_ppt_edit\\source.xml",
+    "revision_id": 4,
+    "scope": "presentation",
+    "size": 33764,
+    "xml_presentation_id": "HKBJsD2zmlideXdx9lzcII12nvg"
+  }
+}

@@ -15,32 +15,12 @@ import unicodedata
 import patient
 import peririsk_agent as agent
 from peririsk_agent import run_agent
-from patient import PATIENT, PATIENT_LOW_RISK, assess_patient
+from patient import EVALUATION_CASES, assess_patient
 
-# ---- 测试病例（字段与 PATIENT 完全一致，仅这里本地使用，不写回 patient.py）----
-# 1) 现有高风险患者  2) 新增低风险患者  3-5) 边界病例
+# ---- 测试病例：统一从 patient.py 的病例花名册读取 ----
 TEST_CASES = [
-    {**PATIENT, "_标签": "高风险·冠心病老人"},
-    {**PATIENT_LOW_RISK, "_标签": "低风险·健康中年"},
-    {
-        "_标签": "边界·老年无基础病",
-        "姓名": "王秀兰", "年龄": 72,
-        "冠心病": False, "糖尿病": False, "肾功能不全": False, "病情不稳定": False,
-        "收缩压": 126,
-    },
-    {
-        # 纳入血压后：SBP 146 触发血压地板，这个病例预期升为 II 级
-        "_标签": "边界·中年轻度高血压",
-        "姓名": "陈伟", "年龄": 50,
-        "冠心病": False, "糖尿病": False, "肾功能不全": False, "病情不稳定": False,
-        "收缩压": 146,
-    },
-    {
-        "_标签": "危重·病情不稳定",
-        "姓名": "赵芳", "年龄": 82,
-        "冠心病": False, "糖尿病": False, "肾功能不全": False, "病情不稳定": True,
-        "收缩压": 92,
-    },
+    {**档案, "_标签": 标签}
+    for 标签, 档案 in EVALUATION_CASES
 ]
 
 # 工具内部名 → 表格里显示的短名
@@ -138,8 +118,9 @@ def main():
     for i, case in enumerate(TEST_CASES, 1):
         label = case["_标签"]
         print(f"[{i}/{total}] 正在评估：{label}（{case['姓名']}）…")
-        # 换患者：开跑前把主程序里"查病历"工具读的那张卡替换掉（主程序本身不改）
-        agent.PATIENT = {k: v for k, v in case.items() if not k.startswith("_")}
+        # 换患者：开跑前更新运行时状态，工具从 runtime_state 读取
+        current_patient = {k: v for k, v in case.items() if not k.startswith("_")}
+        agent.set_patient(current_patient)
 
         trace = Trace()
         _, rounds = run_agent(
@@ -150,22 +131,30 @@ def main():
         # ① 调用顺序
         order_ok, order_desc = judge_order(trace.calls)
         # ② ASA：规则引擎直接算（基准） vs Agent 通过工具实际拿到的（取最后一次，即它最终采信的）
-        expected = assess_patient(agent.PATIENT)
+        expected = assess_patient(current_patient)
         actual = trace.asa_grades[-1] if trace.asa_grades else ""
         grade_ok = (actual == expected)
-        # ③ 心率误差：取第一次心率检测（标准 30 秒窗口）
+        # ③ 心率差异：取第一次心率检测；优先用同源 PLETH_HR，另记综合 HR
         if trace.wave_results:
             w = trace.wave_results[0]
+            waveform_id = w.get("波形ID", "")
             hr_algo = w.get("算法心率")
-            hr_ref = w.get("监护仪对照心率")
-            hr_err = round(abs(hr_algo - hr_ref), 1)
+            hr_ref = w.get("PLETH_HR", w.get("监护仪对照心率"))
+            hr_combined = w.get("HR", "")
+            hr_err = round(abs(hr_algo - hr_ref), 1) if hr_algo is not None and hr_ref is not None else ""
+            hr_combined_err = (
+                round(abs(hr_algo - hr_combined), 1)
+                if hr_algo is not None and hr_combined != "" else ""
+            )
         else:
-            hr_algo = hr_ref = hr_err = ""
+            waveform_id = ""
+            hr_algo = hr_ref = hr_combined = hr_err = hr_combined_err = ""
 
         results.append({
             "标签": label,
             "姓名": case["姓名"],
             "年龄": case["年龄"],
+            "波形ID": waveform_id,
             "预期ASA": expected,
             "Agent_AS_A": actual,
             "分级一致": grade_ok,
@@ -174,6 +163,8 @@ def main():
             "算法心率": hr_algo,
             "参考心率": hr_ref,
             "心率误差": hr_err,
+            "综合HR": hr_combined,
+            "综合HR差": hr_combined_err,
             "轮数": rounds,
         })
 
@@ -181,52 +172,60 @@ def main():
     grade_rate = sum(r["分级一致"] for r in results) / len(results)
     order_rate = sum(r["顺序正确"] for r in results) / len(results)
     hr_errs = [r["心率误差"] for r in results if r["心率误差"] != ""]
+    combined_errs = [r["综合HR差"] for r in results if r["综合HR差"] != ""]
     avg_hr_err = round(sum(hr_errs) / len(hr_errs), 1) if hr_errs else 0
+    avg_combined_err = round(sum(combined_errs) / len(combined_errs), 1) if combined_errs else 0
 
     # ---- 控制台汇总表 ----
     print("\n" + "=" * 72)
     print("  PeriRisk Agent 离线批量评估汇总")
     print("=" * 72)
-    table = [["病例", "预期分级", "Agent分级", "一致", "调用顺序", "顺序", "心率误差", "轮数"]]
+    table = [["病例", "波形", "预期分级", "Agent分级", "一致", "调用顺序", "顺序", "同源差", "HR差", "轮数"]]
     for r in results:
         table.append([
             r["标签"],
+            r["波形ID"],
             short_grade(r["预期ASA"]),
             short_grade(r["Agent_AS_A"]),
             "✓" if r["分级一致"] else "✗",
             r["调用顺序"],
             "✓" if r["顺序正确"] else "✗",
             f"{r['心率误差']}" if r["心率误差"] != "" else "—",
+            f"{r['综合HR差']}" if r["综合HR差"] != "" else "—",
             str(r["轮数"]),
         ])
     print_table(table)
     print("-" * 72)
     print(f"分级一致率：{sum(r['分级一致'] for r in results)}/{len(results)} = {grade_rate:.0%}")
     print(f"调用顺序正确率：{sum(r['顺序正确'] for r in results)}/{len(results)} = {order_rate:.0%}")
-    print(f"平均心率误差：{avg_hr_err} 次/分（基于 {len(hr_errs)} 例）")
+    print(f"平均同源差异（算法 vs PLETH_HR）：{avg_hr_err} 次/分（基于 {len(hr_errs)} 例）")
+    print(f"平均综合 HR 差异：{avg_combined_err} 次/分（基于 {len(combined_errs)} 例）")
 
     # ---- 导出 CSV（utf-8-sig 带 BOM，Excel 直接打开不乱码）----
     out = "evaluation_results.csv"
     with open(out, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.writer(f)
         w.writerow([
-            "病例", "姓名", "年龄",
+            "病例", "姓名", "年龄", "波形ID",
             "预期ASA分级(规则引擎直算)", "Agent工具ASA分级", "分级是否一致",
             "工具调用顺序", "顺序是否正确",
-            "算法心率(次/分)", "监护仪参考心率(次/分)", "心率绝对误差(次/分)",
+            "算法心率(次/分)", "PLETH_HR同源参考(次/分)", "同源绝对差(次/分)",
+            "综合HR(次/分)", "综合HR绝对差(次/分)",
             "思考轮数",
         ])
         for r in results:
             w.writerow([
-                r["标签"], r["姓名"], r["年龄"],
+                r["标签"], r["姓名"], r["年龄"], r["波形ID"],
                 r["预期ASA"], r["Agent_AS_A"], "是" if r["分级一致"] else "否",
                 r["调用顺序"], "是" if r["顺序正确"] else "否",
-                r["算法心率"], r["参考心率"], r["心率误差"], r["轮数"],
+                r["算法心率"], r["参考心率"], r["心率误差"],
+                r["综合HR"], r["综合HR差"], r["轮数"],
             ])
         w.writerow([])
         w.writerow(["统计", f"分级一致率 {grade_rate:.0%}",
                     f"调用顺序正确率 {order_rate:.0%}",
-                    f"平均心率误差 {avg_hr_err} 次/分"])
+                    f"平均同源差异 {avg_hr_err} 次/分",
+                    f"平均综合HR差异 {avg_combined_err} 次/分"])
     print("-" * 72)
     print(f"结果已导出：{out}")
 

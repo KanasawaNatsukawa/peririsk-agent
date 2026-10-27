@@ -1,0 +1,54 @@
+# content：页面文字/数据不截断，不含演讲者备注；图片及嵌入对象未解析，样式不完整，修改时仍须读 raw XML。
+# 表格 r/c 表示 XML 行/格顺序，跨行跨列另标 span；字符串中的 \n 表示原文换行。
+
+## slide 1 id="psq"
+[img id="bHl"] (未展开对象，请读 raw XML/截图)
+[shape id="bHJ"] "围术期风险评估助手 Agent"
+[shape id="bHu"] "PeriRisk Agent · 参赛作品\n深圳技术大学 · 生物医学工程"
+
+## slide 2 id="psF"
+[img id="bHF"] (未展开对象，请读 raw XML/截图)
+[img id="bHw"] (未展开对象，请读 raw XML/截图)
+[shape id="bHZ"] "围术期风险评估助手 Agent（PeriRisk Agent）"
+[shape id="bHY"] "创意描述（必填）：（<500字）"
+[shape id="bHo"] "所属主题（必填）"
+[shape id="bHf"] "应用场景（必填）"
+[shape id="bHB"]
+[line id="bHs" type="line"]
+[line id="bHR" type="line"]
+[shape id="bHx"] "<500字"
+[shape id="bHz"] "科研"
+[shape id="bHa"] "面向麻醉科医生与围术期团队：术前评估输入患者病历与监护波形，输出风险分级与麻醉关注点报告；\n基层医院可借此补齐评估规范性，缓解麻醉医生短缺下的评估质量压力。"
+[shape id="bHU"] "术前风险评估是麻醉科真实刚需：医生手工翻病历、逐项核对 ASA 等评分并对照指南，一次约 20—40 分钟且易漏项，基层医院更缺人。\nPeriRisk Agent 基于大模型 Function Calling 自主调度：输入病历与监护波形，Agent 主动查病历、读波形算心率、按规则判定 ASA 分级，集齐后一键生成【风险评估】【麻醉关注点】【建议】三段式报告。"
+[shape id="bHM"] "AI生成"
+
+## slide 3 id="psV"
+[img id="bHT"] (未展开对象，请读 raw XML/截图)
+[img id="bHk"] (未展开对象，请读 raw XML/截图)
+[shape id="bHV"] "创意方案构想"
+[line id="bHy" type="line"]
+[line id="bHj" type="line"]
+[shape id="bHg"]
+[shape id="bHv"] "方案优势（可选）"
+[shape id="bHd"] "方案详情（必填）"
+[shape id="bHX"] "技术依赖（可选）"
+[shape id="bHI"] "进展：Demo 已跑通，命令行 + Streamlit，GitHub 可复现；5 例批量测试：ASA 分级一致率 100%、工具调用顺序正确率 100%，心率算法误差 5.7 次/分（88.0 vs 监护仪 82.3）；\n依赖：DeepSeek API、Python(scipy)、VitalDB；后续接入 openJiuwen / JiuwenSwarm；\nDemo：3 分钟视频，展示多轮思考与工具调用，输出三段式报告。"
+[shape id="bHp"] "相比通用大模型直接问答：把信号处理做成 Agent 工具链，结论基于真实波形而非纯文本推测；\n结合 VitalDB 公开数据可复现、可验证；学术上沿 Sel(2023) → IOHFuseLM(2025) → wPINNs(2026) 递进落地。"
+[shape id="bHi"] "「大模型决策 + 本地计算」三层架构：\n① 应用层：Agent 主循环，自主拆任务、调工具、回填；\n② 工具层：病历查询、波形心率检测、ASA 规则引擎；\n③ 数据模型层：DeepSeek 出报告，VitalDB 供数，本地算数值。"
+
+## slide 4 id="pss"
+[img id="bHO"] (未展开对象，请读 raw XML/截图)
+[img id="bHC"] (未展开对象，请读 raw XML/截图)
+[shape id="bHE"] "DEMO或示意图（可选，有更好）"
+[shape id="bHr"] "输入\n结构化病历\n监护波形 PPG"
+[line id="bHe"]
+[shape id="bHN"] "Agent 工具链\n① 查病历\n② 波形心率检测\n③ ASA 规则分级"
+[line id="bHP"]
+[shape id="bHL"] "三段式报告\n风险评估\n麻醉关注点\n建议"
+[shape id="bHh"] "PeriRisk Agent 评估链路示意（输入 → 报告生成）"
+[shape id="bHD"] "触发时机：麻醉医生术前评估环节，医生下达评估任务后 Agent 自主执行\n输入输出：输入结构化病历 + 监护波形；输出 ASA 风险分级与三段式评估报告（附工具返回依据）\n关键路径：查病历 → 波形心率检测 → ASA 规则分级 → 信息集齐生成报告"
+
+## slide 5 id="psO"
+[img id="bHb"] (未展开对象，请读 raw XML/截图)
+[shape id="bHW"] "Thank you."
+[img id="bHn"] (未展开对象，请读 raw XML/截图)

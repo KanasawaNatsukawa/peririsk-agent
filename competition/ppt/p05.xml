@@ -1,0 +1,92 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill>
+      <fillColor color="rgba(255, 255, 255, 1)" />
+    </fill>
+  </style>
+  <data>
+    <shape type="text" topLeftX="27" topLeftY="20" width="880" height="40">
+      <content fontSize="32" fontFamily="Microsoft YaHei" color="rgba(192, 0, 0, 1)" textAlign="left" verticalAlign="top" lineSpacing="fixed:40">
+        <p>与现有医疗 Agent 对比：更垂直、更可验证</p>
+      </content>
+    </shape>
+    <table topLeftX="40" topLeftY="76" width="880" height="312">
+      <colgroup>
+        <col width="140"/>
+        <col width="180"/>
+        <col width="240"/>
+        <col width="320"/>
+      </colgroup>
+      <tr height="32">
+        <td>
+          <fill><fillColor color="rgba(0, 112, 192, 1)"/></fill>
+          <content fontSize="13" fontFamily="思源黑体" bold="true" color="rgba(255, 255, 255, 1)" textAlign="center"><p>项目</p></content>
+        </td>
+        <td>
+          <fill><fillColor color="rgba(0, 112, 192, 1)"/></fill>
+          <content fontSize="13" fontFamily="思源黑体" bold="true" color="rgba(255, 255, 255, 1)" textAlign="center"><p>来源</p></content>
+        </td>
+        <td>
+          <fill><fillColor color="rgba(0, 112, 192, 1)"/></fill>
+          <content fontSize="13" fontFamily="思源黑体" bold="true" color="rgba(255, 255, 255, 1)" textAlign="center"><p>定位</p></content>
+        </td>
+        <td>
+          <fill><fillColor color="rgba(0, 112, 192, 1)"/></fill>
+          <content fontSize="13" fontFamily="思源黑体" bold="true" color="rgba(255, 255, 255, 1)" textAlign="center"><p>与 PeriRisk 的差异</p></content>
+        </td>
+      </tr>
+      <tr height="56">
+        <td><content fontSize="12" fontFamily="思源黑体" color="rgba(29, 29, 26, 1)" textAlign="center"><p>ClearPath</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>GitHub jbrodev · MIT</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>临床决策支持 Agent 框架</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>通用临床问答，不覆盖围术期麻醉术前评估</p></content></td>
+      </tr>
+      <tr height="56">
+        <td><content fontSize="12" fontFamily="思源黑体" color="rgba(29, 29, 26, 1)" textAlign="center"><p>RiskAgent</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>AI-in-Health · arXiv 2503.03802</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>多智能体临床风险预测</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>走预测模型路线，非规则引擎与波形计算结合</p></content></td>
+      </tr>
+      <tr height="56">
+        <td><content fontSize="12" fontFamily="思源黑体" color="rgba(29, 29, 26, 1)" textAlign="center"><p>MedAgent-Pro</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>NUS + Oxford · arXiv 2503.18968</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>医疗多智能体任务框架</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>通用任务规划，未绑定术前 ASA 评估场景</p></content></td>
+      </tr>
+      <tr height="56">
+        <td><content fontSize="12" fontFamily="思源黑体" color="rgba(29, 29, 26, 1)" textAlign="center"><p>MedAgentBench</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>Stanford · arXiv 2501.14654</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>医疗 Agent 评测基准</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>是评测基准，非面向临床的可部署产品</p></content></td>
+      </tr>
+      <tr height="56">
+        <td><content fontSize="12" fontFamily="思源黑体" color="rgba(29, 29, 26, 1)" textAlign="center"><p>Microsoft HAO</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>Azure-Samples</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>医疗数据编排 Agent 参考</p></content></td>
+        <td><content fontSize="11" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left"><p>企业级架构参考，无麻醉专科功能</p></content></td>
+      </tr>
+    </table>
+    <shape type="round-rect" topLeftX="40" topLeftY="404" width="880" height="76" presetHandlers="14">
+      <fill><fillColor color="rgba(0, 112, 192, 0.08)" /></fill>
+      <border color="rgba(113, 113, 101, 1)" width="1" />
+    </shape>
+    <shape type="text" topLeftX="60" topLeftY="420" width="840" height="48">
+      <content fontSize="15" fontFamily="Microsoft YaHei" color="rgba(29, 29, 26, 1)" textAlign="left" verticalAlign="top" lineSpacing="multiple:1.3">
+        <p><span bold="true">PeriRisk 差异化定位：</span><span>专注围术期麻醉术前评估单一场景，以真实波形计算 + ASA 规则引擎支撑可验证结论，而非通用问答或预测模型。</span></p>
+      </content>
+    </shape>
+    <img src="MosgbT0mDo7SuXxSKCKcmQxTnIh" width="19.8" height="19.8" topLeftX="816.5" topLeftY="510">
+      <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+    </img>
+    <img src="S3yZbS4JjoogcsxVJjMcPFf5nTg" width="69.9" height="15.6" topLeftX="839.5" topLeftY="510.5">
+      <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+    </img>
+  </data>
+  <note>
+    <content fontSize="14">
+      <p>这一页讲创新性：我们调研了开源社区和学术界的同类医疗 Agent 项目，包括 ClearPath、RiskAgent、MedAgent-Pro、MedAgentBench 和微软的 HAO。</p>
+      <p>这些项目要么是通用临床问答框架，要么走预测模型路线，要么只是评测基准，没有针对围术期麻醉术前评估这个具体场景。</p>
+      <p>PeriRisk 的差异化在于：聚焦单一垂直场景，用真实波形计算和 ASA 规则引擎支撑结论，每个结论都可追溯依据。</p>
+    </content>
+  </note>
+</slide>

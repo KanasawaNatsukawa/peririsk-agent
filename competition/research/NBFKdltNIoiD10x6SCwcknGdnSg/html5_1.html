@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="use-iframe" content="true">
+<meta name="html-box-height-mode" content="auto">
+<meta name="description" content="openJiuwen 大赛 7 阶段赛程时间轴，标注当前所处阶段与关键截止日">
+<title></title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"PingFang SC","Microsoft YaHei",sans-serif; background:#FFFFFF; color:#1F2329; }
+  .tl { width:100%; max-width:100%; padding:6px 4px 2px; }
+  .tl-head { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .tl-title { font-size:17px; font-weight:700; color:#1F2329; }
+  .tl-now { font-size:14px; color:#C7000B; font-weight:600; }
+  .node { position:relative; padding:0 0 16px 26px; border-left:2px solid #DEE3E8; margin-left:9px; }
+  .node:last-child { border-left-color:transparent; padding-bottom:0; }
+  .node::before { content:""; position:absolute; left:-7px; top:5px; width:12px; height:12px; border-radius:50%; background:#FFFFFF; border:2px solid #DEE3E8; }
+  .node.done::before { background:#C9CDD4; border-color:#C9CDD4; }
+  .node.current::before { background:#C7000B; border-color:#C7000B; }
+  .node .card { background:#FFFFFF; border:1px solid #DEE3E8; border-radius:8px; padding:9px 12px; }
+  .node.current .card { background:#FDEBEB; border-color:#C7000B; }
+  .node .ph { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .node .name { font-size:16px; font-weight:700; color:#1F2329; }
+  .node.current .name { color:#C7000B; }
+  .node .date { font-size:14px; color:#646A73; }
+  .node .desc { font-size:14px; color:#646A73; margin-top:4px; line-height:1.55; }
+  .tag { font-size:12px; font-weight:600; color:#FFFFFF; background:#C7000B; border-radius:10px; padding:2px 10px; white-space:nowrap; }
+  .tag-now { background:#2B5FBF; }
+</style>
+</head>
+<body>
+<div class="tl">
+  <div class="tl-head">
+    <div class="tl-title">openJiuwen 赛程时间轴（7 阶段）</div>
+    <div class="tl-now">现在 2026/10/17 · 处于创意提交阶段 · 距截止 14 天</div>
+  </div>
+
+  <div class="node done">
+    <div class="card">
+      <div class="ph"><span class="name">阶段1 大赛启动</span><span class="date">2026/09/10</span></div>
+      <div class="desc">报名通道开放，全程免费参赛。</div>
+    </div>
+  </div>
+
+  <div class="node current">
+    <div class="card">
+      <div class="ph"><span class="name">阶段2 创意提交</span><span class="tag">你现在在这里</span></div>
+      <div class="date">2026/09/10 – 10/31</div>
+      <div class="desc">提交作品简介和创意说明等材料。报名问卷与创意作品提交同为 10/31 截止。</div>
+    </div>
+  </div>
+
+  <div class="node">
+    <div class="card">
+      <div class="ph"><span class="name">阶段3 创意评审</span><span class="date">11/01 – 11/15</span></div>
+      <div class="desc">评审专家材料评审，评选入围 DEMO 开发名单。</div>
+    </div>
+  </div>
+
+  <div class="node">
+    <div class="card">
+      <div class="ph"><span class="name">阶段4 DEMO 开发</span><span class="date">11/15 – 12/27 24:00</span></div>
+      <div class="desc">晋级队伍完成可运行 DEMO，提交演示视频与项目文档。</div>
+    </div>
+  </div>
+
+  <div class="node">
+    <div class="card">
+      <div class="ph"><span class="name">阶段5 DEMO 评审</span><span class="date">12/28 – 12/31</span></div>
+      <div class="desc">社区专家线上评审：完成度、用户体验、技术难度、商业价值。</div>
+    </div>
+  </div>
+
+  <div class="node">
+    <div class="card">
+      <div class="ph"><span class="name">阶段6 决赛</span><span class="date">2027年1月底 · 待定</span></div>
+      <div class="desc">线上路演，入围 30 支队伍，评委综合打分定获奖名单。</div>
+    </div>
+  </div>
+
+  <div class="node">
+    <div class="card">
+      <div class="ph"><span class="name">阶段7 颁奖</span><span class="date">待定</span></div>
+      <div class="desc">线下颁奖典礼。</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<ns0:slide xmlns:ns0="https://www.larkoffice.com/sml/2.0" id="psV">
+    <ns0:style>
+      <ns0:fill id="fsV">
+        <ns0:fillColor color="rgba(255, 255, 255, 1)" />
+      </ns0:fill>
+    </ns0:style>
+    <ns0:data>
+      <ns0:img id="bHT" src="MosgbT0mDo7SuXxSKCKcmQxTnIh" width="19.84251968503937" height="19.84251968503937" topLeftX="816.4750393700788" topLeftY="510.0166929133858">
+        <ns0:crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+      </ns0:img>
+      <ns0:img id="bHk" src="S3yZbS4JjoogcsxVJjMcPFf5nTg" width="69.94685039370079" height="15.590551181102363" topLeftX="839.4658267716535" topLeftY="510.50637795275594">
+        <ns0:crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+      </ns0:img>
+      <ns0:shape width="845.3894488188977" height="34" topLeftX="27.193858267716507" topLeftY="19.620944881889763" type="text" id="bHV">
+        <ns0:content verticalAlign="top" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="fixed:34.29" marginRight="0" defaultTabSize="93.49"><ns0:strong><ns0:span color="rgba(192, 0, 0, 1)" fontSize="32" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">创意方案构想</ns0:span></ns0:strong></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:line id="bHy" startX="7" startY="284.0548031496063" endX="948.0005511811023" endY="285.0548031496063" type="line">
+        <ns0:border color="rgba(111, 111, 111, 1)" dashArray="dash" width="1" lineJoin="miter" miterLimit="10" />
+        <ns0:startArrow widthScale="med" heightScale="med" />
+        <ns0:endArrow widthScale="med" heightScale="med" />
+      </ns0:line>
+      <ns0:line id="bHj" startX="456.3287848842019" startY="285.3082678742338" endX="457.3288529110737" endY="501.00228330686855" type="line">
+        <ns0:border color="rgba(111, 111, 111, 1)" dashArray="dash" width="1" lineJoin="miter" miterLimit="10" />
+        <ns0:startArrow widthScale="med" heightScale="med" />
+        <ns0:endArrow widthScale="med" heightScale="med" />
+      </ns0:line>
+      <ns0:shape width="941" height="428.0548031496063" topLeftX="7" topLeftY="70.02740157480315" presetHandlers="35.344486" type="round-rect" id="bHg">
+        <ns0:border color="rgba(113, 113, 101, 1)" width="1" lineJoin="miter" miterLimit="10" />
+        <ns0:content paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <ns0:p textAlign="center" lineSpacing="multiple:1.2" marginRight="0"><ns0:span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false"> </ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="149.70984251968503" height="27" topLeftX="32.73047244094488" topLeftY="296.3316535433071" type="text" id="bHv">
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="center">
+          <ns0:p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Microsoft YaHei" bold="false" italic="false" strikethrough="false" underline="false">方案优势（可选）</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="190.08472440944882" height="27" topLeftX="23.671181102362198" topLeftY="80.59874015748032" type="text" id="bHd">
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="center">
+          <ns0:p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Microsoft YaHei" bold="false" italic="false" strikethrough="false" underline="false">方案详情</ns0:span><ns0:strong><ns0:span color="rgba(192, 0, 0, 1)" fontSize="18" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">（必填）</ns0:span></ns0:strong></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="156.28055118110237" height="27" topLeftX="467.74362204724406" topLeftY="296.3316535433071" type="text" id="bHX">
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="center">
+          <ns0:p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Microsoft YaHei" bold="false" italic="false" strikethrough="false" underline="false">技术依赖（可选）</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="425.6569291338583" height="125" topLeftX="480.0006299212598" topLeftY="372.38992125984254" presetHandlers="0" type="round-rect" id="bHI">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">进展：Demo 已跑通，命令行 + Streamlit，GitHub 可复现；5 例批量测试：ASA 分级一致率 </ns0:span></ns0:em><ns0:strong><ns0:em><ns0:span color="rgba(192, 0, 0, 1)" fontSize="15" fontFamily="DengXian" strikethrough="false" underline="false">100%</ns0:span></ns0:em></ns0:strong><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">、工具调用顺序正确率 </ns0:span></ns0:em><ns0:strong><ns0:em><ns0:span color="rgba(192, 0, 0, 1)" fontSize="15" fontFamily="DengXian" strikethrough="false" underline="false">100%</ns0:span></ns0:em></ns0:strong><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">，心率算法误差 </ns0:span></ns0:em><ns0:strong><ns0:em><ns0:span color="rgba(192, 0, 0, 1)" fontSize="15" fontFamily="DengXian" strikethrough="false" underline="false">5.7 次/分</ns0:span></ns0:em></ns0:strong><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">（88.0 vs 监护仪 82.3）；</ns0:span></ns0:em></ns0:p>
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">依赖：DeepSeek API、Python(scipy)、VitalDB；后续接入 openJiuwen / JiuwenSwarm；</ns0:span></ns0:em></ns0:p>
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">Demo：3 分钟视频，展示多轮思考与工具调用，输出三段式报告。</ns0:span></ns0:em></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="425.6569291338583" height="100" topLeftX="23.671181102362198" topLeftY="372.38992125984254" presetHandlers="0" type="round-rect" id="bHp">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">相比通用大模型直接问答：把信号处理做成 Agent 工具链，结论基于真实波形而非纯文本推测；</ns0:span></ns0:em></ns0:p>
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">结合 VitalDB 公开数据可复现、可验证；学术上沿 Sel(2023) → IOHFuseLM(2025) → wPINNs(2026) 递进落地。</ns0:span></ns0:em></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="425.6569291338583" height="130" topLeftX="27.193858267716536" topLeftY="155.07330708661416" presetHandlers="0" type="round-rect" id="bHi">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">「大模型决策 + 本地计算」三层架构：</ns0:span></ns0:em></ns0:p>
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">① 应用层：Agent 主循环，自主拆任务、调工具、回填；</ns0:span></ns0:em></ns0:p>
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">② 工具层：病历查询、波形心率检测、ASA 规则引擎；</ns0:span></ns0:em></ns0:p>
+          <ns0:p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">③ 数据模型层：DeepSeek 出报告，VitalDB 供数，本地算数值。</ns0:span></ns0:em></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+    </ns0:data>
+    <ns0:note id="bHm">
+      <ns0:content>
+        <ns0:p textAlign="left" lineSpacing="multiple:1.2" defaultTabSize="72"><ns0:span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false">Click to add text</ns0:span></ns0:p>
+      </ns0:content>
+    </ns0:note>
+  </ns0:slide>
+  

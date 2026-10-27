@@ -4,32 +4,21 @@
 #   流水线 —— 剧本写死：算心率 → 算分级 → 拼摘要 → 出报告
 #   Agent —— 只给大脑一个"工具箱"和任务，它自己决定先查什么、后查什么，
 #            每轮把工具结果喂回去，直到它认为信息够了再写报告。
-# 三个部件：
-#   1) 工具真身：普通 Python 函数（上半部分，和 AI 无关，能单独测试）
-#   2) 工具说明书：JSON Schema，告诉大脑"有什么工具、怎么用"（TOOLS）
-#   3) Agent 主循环：思考 → 点名工具 → 本地执行 → 结果回填 → 再思考（run_agent）
+# 工具实现、JSON Schema 和工具注册表都在 tools/ 包；
+# 本文件只保留 Agent 主循环：
+# 思考 → 点名工具 → 本地执行 → 结果回填 → 再思考（run_agent）
 # 用法：python peririsk_agent.py
 # ============================================================
 
-import csv
 import json
 import os
 import sys
 import threading
 import time
-from pathlib import Path
 
-import numpy as np
-from scipy.signal import find_peaks
-
-from asa_risk import assess_asa
-from patient import PATIENT
 from llm import chat_with_tools
-
-# ---- 数据文件位置（跟脚本走，换电脑也能跑）----
-DATA_DIR = Path(__file__).resolve().parent / "data"
-WAVE_FILE = DATA_DIR / "waveform_120s.csv"
-NUM_FILE = DATA_DIR / "numeric_60s.csv"
+from runtime_state import set_patient
+from tools import TOOL_FUNCTIONS, TOOLS
 
 # ---- 终端着色 + loading 动画 ----
 # Windows 下默认没开 ANSI 转义，调一次空命令激活 VT 处理（Win10+ 才支持彩色）
@@ -83,113 +72,7 @@ class Spinner:
 
 
 # ============================================================
-# 部件 1：工具的"真身"——普通 Python 函数
-# ============================================================
-
-def get_patient_record():
-    """工具 1：查询病历。演示场景病历写死在 patient.py，真实场景来自医院 HIS。"""
-    return dict(PATIENT)
-
-
-def analyze_waveform(segment_seconds=30):
-    """工具 2：读监护波形并检测心跳。分析多长由大脑决定（太短会不准）。"""
-    pleth = []
-    with open(WAVE_FILE, encoding="utf-8-sig") as f:
-        for row in csv.DictReader(f):
-            pleth.append(float(row["PLETH(a.u.)"]))
-    pleth = np.array(pleth)
-    fs = 500                                                # 采样率：每秒 500 点
-    seconds = max(5, min(segment_seconds, len(pleth) // fs))  # 夹在 [5, 120] 秒，防乱传
-    seg = pleth[: fs * seconds]
-    peaks, _ = find_peaks(seg, distance=fs * 0.4, prominence=0.5)
-    hr_est = len(peaks) * 60 / seconds
-    hrs = []                                                # 监护仪记录的心率，做对照
-    with open(NUM_FILE, encoding="utf-8-sig") as f:
-        for row in csv.DictReader(f):
-            if row["心率(次/分)"]:
-                hrs.append(float(row["心率(次/分)"]))
-    ref_hr = float(np.mean(hrs))
-    return {
-        "分析时长秒": seconds,
-        "检测心跳次数": int(len(peaks)),
-        "算法心率": round(hr_est, 1),
-        "监护仪对照心率": round(ref_hr, 1),
-    }
-
-
-def assess_asa_grade(age, coronary_heart_disease, diabetes, kidney_failure, unstable,
-                     systolic_bp=None):
-    """工具 3：ASA 规则引擎。参数由大脑从病历里挑出来填进去。
-
-    systolic_bp 是病历里的收缩压，规则引擎会把高血压纳入分级（血压地板）。
-    """
-    grade = assess_asa(age, coronary_heart_disease, diabetes, kidney_failure, unstable,
-                       systolic_bp)
-    return {"ASA分级": grade}
-
-
-# "电话簿"：大脑点名的名字 → 真正要执行的函数
-TOOL_FUNCTIONS = {
-    "get_patient_record": get_patient_record,
-    "analyze_waveform": analyze_waveform,
-    "assess_asa_grade": assess_asa_grade,
-}
-
-
-# ============================================================
-# 部件 2：工具的"说明书"——JSON Schema，随请求发给大脑的"菜单"
-# name / description / 参数说明写得越清楚，大脑点菜越准
-# ============================================================
-
-TOOLS = [
-    {
-        "type": "function",
-        "function": {
-            "name": "get_patient_record",
-            "description": "查询患者病历，返回年龄、既往史（冠心病/糖尿病/肾功能不全/病情是否稳定）和收缩压。",
-            "parameters": {"type": "object", "properties": {}},
-        },
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "analyze_waveform",
-            "description": "分析监护仪脉搏波并检测心跳，返回算法心率与监护仪对照心率。建议先取 30 秒；若结果可疑可换时长重算。",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "segment_seconds": {
-                        "type": "integer",
-                        "description": "分析的波形时长（秒），范围 5~120，默认 30",
-                    },
-                },
-            },
-        },
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "assess_asa_grade",
-            "description": "根据患者情况计算 ASA 麻醉分级，已把收缩压（高血压）纳入判断。调用前需要先查病历拿到各项信息。",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "age": {"type": "integer", "description": "年龄（岁）"},
-                    "coronary_heart_disease": {"type": "boolean", "description": "是否有冠心病"},
-                    "diabetes": {"type": "boolean", "description": "是否有糖尿病"},
-                    "kidney_failure": {"type": "boolean", "description": "是否有肾功能不全"},
-                    "unstable": {"type": "boolean", "description": "病情是否不稳定"},
-                    "systolic_bp": {"type": "integer", "description": "收缩压（mmHg），来自病历"},
-                },
-                "required": ["age", "coronary_heart_disease", "diabetes", "kidney_failure", "unstable", "systolic_bp"],
-            },
-        },
-    },
-]
-
-
-# ============================================================
-# 部件 3：Agent 主循环
+# Agent 主循环
 # ============================================================
 
 SYSTEM_PROMPT = (
@@ -199,7 +82,7 @@ SYSTEM_PROMPT = (
     "格式包含三部分：【风险评估】【麻醉关注点】【建议】。\n"
     "数据引用规则（必须严格遵守）：\n"
     "1. 报告中【每一条结论】的句末，都要用括号附上它实际引用的工具返回值，例如："
-    "（依据：病历工具返回 年龄68岁、收缩压158mmHg；心率工具返回 算法心率88.0次/分；"
+    "（依据：病历工具返回 年龄68岁、收缩压158mmHg；心率工具返回 算法心率87.0次/分、PLETH_HR87.8次/分；"
     "ASA规则引擎判定 III级）。\n"
     "2. 依据只能来自本次工具调用在对话中真实返回的字段，数值逐字照抄，"
     "禁止编造、推测或引用任何工具没有返回的信息。注意：结论正文和依据里都不许出现"
@@ -207,11 +90,12 @@ SYSTEM_PROMPT = (
     "冠脉造影结果等，这些一律不能写。布尔值一律写成\"有/无\"或\"是/否\"，"
     "不要直接出现 true/false 字样。\n"
     "3. 三个工具返回的字段仅限于："
-    "病历工具 get_patient_record（姓名、年龄、冠心病、糖尿病、肾功能不全、病情不稳定、收缩压）；"
-    "心率工具 analyze_waveform（分析时长秒、检测心跳次数、算法心率、监护仪对照心率）；"
+    "病历工具 get_patient_record（姓名、年龄、冠心病、糖尿病、肾功能不全、病情不稳定、收缩压、波形ID）；"
+    "心率工具 analyze_waveform（波形ID、分析时长秒、参考窗口秒、检测心跳次数、算法心率、PLETH_HR、HR、监护仪对照心率）；"
     "ASA规则引擎 assess_asa_grade（ASA分级）。\n"
     "4. 某条结论找不到工具返回值支撑，就不要写这条结论；工具没返回的信息不要出现在依据里。\n"
-    "5. 三段式结构和现有措辞风格保持不变，只在每条结论句末补括号依据，不要单独罗列数据清单。"
+    "5. 三段式结构和现有措辞风格保持不变，只在每条结论句末补括号依据，不要单独罗列数据清单。\n"
+    "6. 调用 analyze_waveform 时，先使用病历工具返回的波形ID；除非用户明确要求比较不同窗口，否则 segment_seconds 固定传 60。"
 )
 
 MAX_ROUNDS = 8   # 安全阀：防止大脑陷入死循环烧钱

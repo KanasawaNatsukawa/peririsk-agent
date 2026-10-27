@@ -1,0 +1,13 @@
+{
+  "audience": "openJiuwen 参赛者（PeriRisk 团队）",
+  "reader_task": "确认参赛规则与红线，10/31 前完成报名和创意提交",
+  "genre_contract": null,
+  "adapter": null,
+  "presentation_mode": "rich",
+  "visual_plan": {
+    "reason": "实用攻略与规划｜用户行动主线是赛程时间线；用 HTML 时间轴展示 7 阶段与当前所处位置，降低理解与执行成本",
+    "blocks": [
+      {"type": "html5-block", "min_count": 1, "purpose": "赛程时间轴，标注当前阶段与关键截止日"}
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill>
+      <fillColor color="rgba(255, 255, 255, 1)" />
+    </fill>
+  </style>
+  <data>
+    <shape type="text" topLeftX="27" topLeftY="20" width="880" height="40">
+      <content fontSize="32" fontFamily="Microsoft YaHei" color="rgba(192, 0, 0, 1)" textAlign="left" verticalAlign="top" lineSpacing="fixed:40">
+        <p>真实运行效果：思考过程与三段式报告</p>
+      </content>
+    </shape>
+    <img src="EXSibrTZOoaHOOxAm7mcNarlnMf" topLeftX="50" topLeftY="88" width="420" height="200">
+      <crop type="rect" presetHandlers="10" />
+    </img>
+    <shape type="text" topLeftX="50" topLeftY="296" width="420" height="28">
+      <content fontSize="12" fontFamily="思源黑体" color="rgba(128, 128, 128, 1)" textAlign="center" verticalAlign="top" lineSpacing="multiple:1.2">
+        <p>图1 · Agent 多轮思考与工具调用过程（含返回依据）</p>
+      </content>
+    </shape>
+    <img src="ZDg8bILDmocOkPxDaKkcvfJ0n5e" topLeftX="490" topLeftY="88" width="420" height="200">
+      <crop type="rect" presetHandlers="10" />
+    </img>
+    <shape type="text" topLeftX="490" topLeftY="296" width="420" height="28">
+      <content fontSize="12" fontFamily="思源黑体" color="rgba(128, 128, 128, 1)" textAlign="center" verticalAlign="top" lineSpacing="multiple:1.2">
+        <p>图2 · 三段式评估报告输出（风险评估 / 麻醉关注点 / 建议）</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="50" topLeftY="344" width="860" height="126" presetHandlers="14">
+      <fill><fillColor color="rgba(0, 112, 192, 0.06)" /></fill>
+      <border color="rgba(113, 113, 101, 1)" width="1" />
+    </shape>
+    <shape type="text" topLeftX="70" topLeftY="360" width="820" height="100">
+      <content fontSize="14" fontFamily="DengXian" color="rgba(29, 29, 26, 1)" textAlign="left" verticalAlign="top" lineSpacing="multiple:1.5">
+        <p><span bold="true">演示方式：</span><span>命令行 + Streamlit 双入口，输入示范病历与 VitalDB 波形即可运行；</span></p>
+        <p><span bold="true">可追溯：</span><span>左侧展示思考与工具调用全过程，报告中的每项结论均附工具返回依据；</span></p>
+        <p><span bold="true">可复现：</span><span>完整代码、依赖与运行说明见 GitHub 仓库 README。</span></p>
+      </content>
+    </shape>
+    <img src="MosgbT0mDo7SuXxSKCKcmQxTnIh" width="19.8" height="19.8" topLeftX="816.5" topLeftY="510">
+      <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+    </img>
+    <img src="S3yZbS4JjoogcsxVJjMcPFf5nTg" width="69.9" height="15.6" topLeftX="839.5" topLeftY="510.5">
+      <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+    </img>
+  </data>
+  <note>
+    <content fontSize="14">
+      <p>这一页展示实用性：左边是 Agent 的思考与工具调用过程截图，能看到它一步步查病历、算心率、做 ASA 分级。</p>
+      <p>右边是最终的三段式报告：风险评估、麻醉关注点、建议，医生可以直接参考。</p>
+      <p>强调两点：每个结论都附了工具返回的依据，可追溯；代码开源在 GitHub，可复现。</p>
+    </content>
+  </note>
+</slide>

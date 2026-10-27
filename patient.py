@@ -27,12 +27,65 @@ PATIENT_LOW_RISK = {
     "收缩压": 120,   # 正常血压
 }
 
+# ---- 边界与危重病例：与网页、批量评估共用同一批档案卡 ----
+PATIENT_WANG = {
+    "姓名": "王秀兰",
+    "年龄": 72,
+    "冠心病": False,
+    "糖尿病": False,
+    "肾功能不全": False,
+    "病情不稳定": False,
+    "收缩压": 126,
+}
+
+PATIENT_CHEN = {
+    "姓名": "陈伟",
+    "年龄": 50,
+    "冠心病": False,
+    "糖尿病": False,
+    "肾功能不全": False,
+    "病情不稳定": False,
+    "收缩压": 146,
+}
+
+PATIENT_ZHAO = {
+    "姓名": "赵芳",
+    "年龄": 82,
+    "冠心病": False,
+    "糖尿病": False,
+    "肾功能不全": False,
+    "病情不稳定": True,
+    "收缩压": 92,
+}
+
 # ---- 患者花名册：界面下拉框按"标签 → 档案卡"切换 ----
 # 第一项是默认的高风险患者，保证不选时行为和以前完全一样
 PATIENTS = {
     "高风险患者 · 张三（68岁，冠心病）": PATIENT,
     "低风险患者 · 李四（45岁，既往健康）": PATIENT_LOW_RISK,
+    "边界患者 · 王秀兰（72岁，无基础病）": PATIENT_WANG,
+    "边界患者 · 陈伟（50岁，轻度高血压）": PATIENT_CHEN,
+    "危重患者 · 赵芳（82岁，病情不稳定）": PATIENT_ZHAO,
 }
+
+# ---- 批量评估的短标签：只复用上面的档案卡，不再复制患者数据 ----
+EVALUATION_CASES = [
+    ("高风险·冠心病老人", PATIENT),
+    ("低风险·健康中年", PATIENT_LOW_RISK),
+    ("边界·老年无基础病", PATIENT_WANG),
+    ("边界·中年轻度高血压", PATIENT_CHEN),
+    ("危重·病情不稳定", PATIENT_ZHAO),
+]
+
+# ---- 患者与 VitalDB 波形的一一绑定：网页选患者时自动切换对应病例 ----
+PATIENT_WAVEFORMS = {
+    "张三": "case_001",
+    "李四": "case_002",
+    "王秀兰": "case_003",
+    "陈伟": "case_004",
+    "赵芳": "case_005",
+}
+DEFAULT_WAVEFORM_ID = "case_001"
 
 
 def assess_patient(patient):

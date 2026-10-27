@@ -1,0 +1,188 @@
+﻿{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "content_saved": true,
+    "issues": {
+      "document": {
+        "errors": [],
+        "infos": [],
+        "warnings": []
+      },
+      "file": null,
+      "schema_version": "2.0",
+      "slide_size": {
+        "height": 540,
+        "width": 960
+      },
+      "slides": [
+        {
+          "element_count": 3,
+          "errors": [],
+          "infos": [],
+          "issues": [],
+          "slide_number": 1,
+          "status": "passed",
+          "warnings": []
+        },
+        {
+          "element_count": 14,
+          "errors": [
+            {
+              "code": "image_covers_text",
+              "element_ids": [
+                "bci",
+                "bcD"
+              ],
+              "elements": [
+                "bci",
+                "bcD"
+              ],
+              "hint": "Locate via related_objects[].xml_path. Adjust the image and text shape coordinates or dimensions so the image no longer overlaps the text glyph area.",
+              "level": "error",
+              "measurement": {
+                "violation_count": 1
+              },
+              "message": "image bci covers text shape bcD",
+              "related_objects": [
+                {
+                  "bbox": {
+                    "height": 15.590551181102363,
+                    "width": 69.94685039370079,
+                    "x": 839.4658267716535,
+                    "y": 510.50637795275594
+                  },
+                  "element_id": "bci",
+                  "kind": "img",
+                  "type": "img",
+                  "xml_path": "slide[2]/data/img[2]"
+                },
+                {
+                  "bbox": {
+                    "height": 32.4,
+                    "width": 115.2,
+                    "x": 837.6,
+                    "y": 500.40000000000003
+                  },
+                  "element_id": "bcD",
+                  "kind": "shape",
+                  "type": "text",
+                  "xml_path": "slide[2]/data/shape[10]"
+                }
+              ],
+              "rule": {
+                "comparison": "intersection_area == 0",
+                "id": "image_covers_text",
+                "name": "image_does_not_cover_text"
+              },
+              "schema_version": "2.0",
+              "target": {
+                "slide_number": 2
+              }
+            }
+          ],
+          "infos": [],
+          "issues": [
+            {
+              "code": "image_covers_text",
+              "element_ids": [
+                "bci",
+                "bcD"
+              ],
+              "elements": [
+                "bci",
+                "bcD"
+              ],
+              "hint": "Locate via related_objects[].xml_path. Adjust the image and text shape coordinates or dimensions so the image no longer overlaps the text glyph area.",
+              "level": "error",
+              "measurement": {
+                "violation_count": 1
+              },
+              "message": "image bci covers text shape bcD",
+              "related_objects": [
+                {
+                  "bbox": {
+                    "height": 15.590551181102363,
+                    "width": 69.94685039370079,
+                    "x": 839.4658267716535,
+                    "y": 510.50637795275594
+                  },
+                  "element_id": "bci",
+                  "kind": "img",
+                  "type": "img",
+                  "xml_path": "slide[2]/data/img[2]"
+                },
+                {
+                  "bbox": {
+                    "height": 32.4,
+                    "width": 115.2,
+                    "x": 837.6,
+                    "y": 500.40000000000003
+                  },
+                  "element_id": "bcD",
+                  "kind": "shape",
+                  "type": "text",
+                  "xml_path": "slide[2]/data/shape[10]"
+                }
+              ],
+              "rule": {
+                "comparison": "intersection_area == 0",
+                "id": "image_covers_text",
+                "name": "image_does_not_cover_text"
+              },
+              "schema_version": "2.0",
+              "target": {
+                "slide_number": 2
+              }
+            }
+          ],
+          "slide_number": 2,
+          "status": "blocked",
+          "warnings": []
+        },
+        {
+          "element_count": 12,
+          "errors": [],
+          "infos": [],
+          "issues": [],
+          "slide_number": 3,
+          "status": "passed",
+          "warnings": []
+        },
+        {
+          "element_count": 10,
+          "errors": [],
+          "infos": [],
+          "issues": [],
+          "slide_number": 4,
+          "status": "passed",
+          "warnings": []
+        },
+        {
+          "element_count": 2,
+          "errors": [],
+          "infos": [],
+          "issues": [],
+          "slide_number": 5,
+          "status": "passed",
+          "warnings": []
+        }
+      ],
+      "summary": {
+        "error_count": 1,
+        "info_count": 0,
+        "release_ready": false,
+        "screenshot_review_required": false,
+        "slide_count": 5,
+        "status": "blocked",
+        "warning_count": 0
+      },
+      "tool": "xml_lint"
+    },
+    "path": "C:\\Users\\唐泽夏川\\Doubao\\chats\\2026-09-28\\new-chat\\peririsk-demo\\ojw_ppt_edit\\online_source.xml",
+    "revision_id": 27,
+    "scope": "presentation",
+    "size": 30290,
+    "xml_presentation_id": "LjjMsrWUNlrRhWdPzdscr1Aqn8g"
+  }
+}

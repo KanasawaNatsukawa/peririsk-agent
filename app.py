@@ -52,9 +52,13 @@ def humanize_result(name, result):
                 f"冠心病{'阳性' if result.get('冠心病') else '阴性'}，"
                 f"收缩压 {result.get('收缩压')} mmHg）")
     if name == "analyze_waveform":
+        seconds = result.get("分析时长秒", "?")
+        waveform_id = result.get("波形ID", "?")
+        pleth_hr = result.get("PLETH_HR", result.get("监护仪对照心率"))
+        hr = result.get("HR")
         return (f"算法心率 {result.get('算法心率')} 次/分"
-                f"（监护仪对照 {result.get('监护仪对照心率')}，"
-                f"检测心跳 {result.get('检测心跳次数')} 次）")
+                f"（{waveform_id}，{seconds} 秒窗口；PLETH_HR {pleth_hr}，"
+                f"综合 HR {hr}；检测心跳 {result.get('检测心跳次数')} 次）")
     if name == "assess_asa_grade":
         return result.get("ASA分级", str(result))
     return str(result)
@@ -104,17 +108,14 @@ class ThoughtRenderer:
             time.sleep(0.5)
 
 
-# ---- 患者选择：在高/低风险两个患者之间切换 ----
+# ---- 患者选择：从 patient.py 的五个病例花名册切换 ----
 # 花名册（标签 → 档案卡）在 patient.py 里维护，这里只负责选
 patient_label = st.selectbox("选择评估患者", list(patient.PATIENTS.keys()))
 
 # ---- 中间一个大按钮 ----
 if st.button("开始术前风险评估", use_container_width=True):
-    # 把 Agent 的"查病历"工具读取的那张卡换成选中的患者。
-    # 原理：get_patient_record() 内部读的是 peririsk_agent 模块里的全局 PATIENT，
-    # 函数执行时才按名字查找，所以开跑前给 agent.PATIENT 赋新值就能换患者——
-    # 工具定义、工具参数和 Agent 主循环一行都不用动。
-    agent.PATIENT = patient.PATIENTS[patient_label]
+    # 把运行时状态切换为下拉框选中的患者；工具从 runtime_state 读取。
+    agent.set_patient(patient.PATIENTS[patient_label])
     # 区域标题：小号灰色"Agent 思考过程"
     st.markdown(
         '<p style="color:#666666;font-size:0.9em;margin:0.6em 0 0.2em;">Agent 思考过程</p>',

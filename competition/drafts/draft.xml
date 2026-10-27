@@ -1,0 +1,66 @@
+<title>openJiuwen 参赛自查清单（PeriRisk）</title>
+<callout><p><b>最优先两件事</b>：① 2026/10/31 前完成<b>报名问卷</b>和<b>创意作品提交</b>（双截止同一天）[1]；② 提交作品需在华为云大赛官网完成<b>华为云账号实名认证</b>，认证要时间，别拖到最后一天。</p></callout>
+<h1>赛程全貌</h1>
+<p>大赛共 7 个阶段，你现在处于<b>阶段2 创意提交</b>，距初赛截止还有 14 天。</p>
+<html5-block path="@./draft_93c7dc6b_folder/timeline.html"/>
+<h1>报名与提交</h1>
+<ol>
+<li><p><b>填报名问卷</b>：问卷即正式报名，报名阶段无需实名认证。</p></li>
+<li><p><b>官网组队 + 实名认证</b>：到华为云大赛官网重新提交报名并组建团队（每队 1~5 人，不可重复组队），提交阶段需华为云账号实名认证。</p></li>
+<li><p><b>准备创意材料</b>：创意 PPT（建议用官方模板）+ 可选补充资料，见下节清单。</p></li>
+<li><p><b>上传提交</b>：通过大赛官网提交 zip，命名【openJiuwen创新大赛创意作品】XXX队。</p></li>
+</ol>
+<table>
+<colgroup><col width="110"/><col width="260"/><col width="450"/></colgroup>
+<thead><tr><th><p>项目</p></th><th><p>要求</p></th><th><p>说明</p></th></tr></thead>
+<tbody>
+<tr><td><p>文件格式</p></td><td><p>zip，≤500MB（创意阶段）</p></td><td><p>DEMO 阶段 FAQ 两处口径不一（≤5GB / ≤500MB），以官方后续发布为准 [1]</p></td></tr>
+<tr><td><p>提交次数</p></td><td><p>每队 1 个作品，可重复提交 5 次</p></td><td><p>以最后一次提交为准；提交页实际次数以官方页面为准 [1]</p></td></tr>
+<tr><td><p>作品命名</p></td><td><p>【openJiuwen创新大赛创意作品】XXX队</p></td><td><p>XXX 为队伍名称</p></td></tr>
+<tr><td><p>PPT 模板</p></td><td><p>赛事详情页下载官方中/英模板</p></td><td><p>需 PC 端登录，手机端无法下载 [1]</p></td></tr>
+</tbody>
+</table>
+<h1>材料清单</h1>
+<h2>创意阶段（10/31 前必交）</h2>
+<checkbox done="false">创意 PPT：包含创意名称、创意描述、所属主题、应用场景、方案详情（建议使用官方模板）</checkbox>
+<checkbox done="false">可选补充：架构图、参考文档等</checkbox>
+<h2>DEMO 阶段（12/27 24:00 前，晋级后）</h2>
+<table>
+<colgroup><col width="240"/><col width="580"/></colgroup>
+<thead><tr><th><p>材料</p></th><th><p>要求</p></th></tr></thead>
+<tbody>
+<tr><td><p>可运行 DEMO</p></td><td><p>功能完整的原型</p></td></tr>
+<tr><td><p>演示视频</p></td><td><p>3 分钟以内</p></td></tr>
+<tr><td><p>答辩 PPT</p></td><td><p>成品答辩用</p></td></tr>
+<tr><td><p>技术报告 / 项目文档</p></td><td><p>含技术方案、架构说明等</p></td></tr>
+</tbody>
+</table>
+<h1>合规红线自查</h1>
+<p>合规是评审前置条件，不合规作品不予评审或取消成绩 [1]。以下是对 PeriRisk 最相关的四条。</p>
+<table>
+<colgroup><col width="90"/><col width="360"/><col width="370"/></colgroup>
+<thead><tr><th><p>维度</p></th><th><p>规则</p></th><th><p>对 PeriRisk 的提示</p></th></tr></thead>
+<tbody>
+<tr><td><p>原创性</p></td><td><p>核心架构/Agent 编排/算法独立完成；第三方代码 ≤30%；须有连续 Git 提交历史证明；基于既有项目只认新增部分；禁止同一作品重复提交多个赛道 [1]</p></td><td><p>你的 GitHub 提交历史可作证据；跨赛事投稿（如讯飞星辰赛）需做差异化版本，否则踩"重复参赛"红线</p></td></tr>
+<tr><td><p>数据</p></td><td><p>外部数据须声明来源、许可证、获取与清洗方式；敏感个人信息（含医疗健康）须脱敏或授权；严禁用评测集训练调参 [1]</p></td><td><p>VitalDB 波形须在文档声明来源与授权；演示样例数据脱敏；测试数据不得含真实患者信息</p></td></tr>
+<tr><td><p>安全</p></td><td><p>演示视频/截图/文档不得泄露密钥、API Key、数据库连接、内部接口 [1]</p></td><td><p>DeepSeek key 不入库不入图（config.py 已 gitignore，继续保持）；演示视频检查有没有露出 key</p></td></tr>
+<tr><td><p>开源</p></td><td><p>仅获奖作品强制开源：Apache 2.0，提交至指定仓库（AtomGit / GitHub，两平台自动同步），含 README、技术方案、依赖声明；未开源视为放弃获奖资格 [1]</p></td><td><p>现仓库已满足大半，获奖后按模板补齐 README 与技术方案即可</p></td></tr>
+</tbody>
+</table>
+<h1>奖项速查</h1>
+<table>
+<colgroup><col width="160"/><col width="160"/><col width="500"/></colgroup>
+<thead><tr><th><p>奖项</p></th><th><p>名额</p></th><th><p>奖金</p></th></tr></thead>
+<tbody>
+<tr><td><p>一等奖</p></td><td><p>3 名</p></td><td><p>¥30,000 / 队</p></td></tr>
+<tr><td><p>二等奖</p></td><td><p>6 名</p></td><td><p>¥20,000 / 队</p></td></tr>
+<tr><td><p>三等奖</p></td><td><p>15 名</p></td><td><p>¥10,000 / 队</p></td></tr>
+<tr><td><p>入围奖</p></td><td><p>25 名</p></td><td><p>¥1,000 / 队（不含已获一二三等奖者）</p></td></tr>
+</tbody>
+</table>
+<p>奖金为税前，组委会代扣代缴个税，赛后 1 个季度内银行转账；每队最多获一个奖项（按最高奖项执行）[1]。获奖者另有全球展示、专访、生态合作、实习就业推荐等增值激励 [1]。</p>
+<p>加分提醒：使用 openJiuwen 生态（WorkSwarm 平台、开源组件、社区工具链）的作品，评审中获技术方案维度加分，加分按生态利用深度评定 [1]。</p>
+<h2>信息来源</h2>
+<p>[1] openJiuwen 智能体创新大赛官方参赛 FAQ（组委会发布）：<a href="https://docs.qq.com/doc/DZVR6WnRNbmNWTGZq">腾讯文档链接</a></p>
+<p>[2] 大赛官网（组队、提交、模板下载、最新通知）：<a href="https://developer.huaweicloud.com/competition/information/1300000328/introduction">华为云开发者大赛页面</a></p>
+<p>赛事规则可能调整，以官方最终通知为准；组委会邮箱：contest@openjiuwen.com [1]。</p>

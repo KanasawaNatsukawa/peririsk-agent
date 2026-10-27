@@ -1,0 +1,310 @@
+<presentation id="HKBJsD2zmlideXdx9lzcII12nvg" xmlns="https://www.larkoffice.com/sml/2.0" width="960" height="540">
+  <title>PeriRisk参赛PPT</title>
+  <theme>
+    <background>
+      <fillColor color="rgba(255, 255, 255, 1)"/>
+    </background>
+    <textStyles>
+      <headline fontColor="rgba(31, 35, 41, 1)"/>
+      <sub-headline fontColor="rgba(31, 35, 41, 1)"/>
+      <body fontColor="rgba(31, 35, 41, 1)"/>
+      <caption fontColor="rgba(155, 158, 162, 1)" fontSize="14"/>
+    </textStyles>
+  </theme>
+  <slide id="psq">
+    <style>
+      <fill id="fsq">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <img id="bHl" src="Z07xbZoXSo4W2Fx4CIYcvjJrnmg" width="960" height="422.5655905511811" topLeftX="0" topLeftY="57.59992125984252">
+        <crop type="rect" leftOffset="0" rightOffset="0" topOffset="57.60171692343357" bottomOffset="59.83191370691321"/>
+      </img>
+      <shape width="522" height="131.87850393700788" topLeftX="21" topLeftY="188.68952755905514" type="text" id="bHJ">
+        <content paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.1" marginRight="0" defaultTabSize="72"><strong><span color="rgba(0, 0, 0, 1)" fontSize="32" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">围术期风险评估助手 Agent</span></strong></p>
+        </content>
+      </shape>
+      <shape width="353.4" height="62.93779527559055" topLeftX="21" topLeftY="374.8967716535433" type="text" id="bHu">
+        <content paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.1" marginRight="0" defaultTabSize="72"><span color="rgba(0, 0, 0, 1)" fontSize="18" fontFamily="Microsoft YaHei" bold="false" italic="false" strikethrough="false" underline="false">PeriRisk Agent · 参赛作品</span></p>
+          <p textAlign="left" lineSpacing="multiple:1.1" marginRight="0" defaultTabSize="72"><span color="rgba(0, 0, 0, 1)" fontSize="18" fontFamily="Microsoft YaHei" bold="false" italic="false" strikethrough="false" underline="false">深圳技术大学 · 生物医学工程</span></p>
+        </content>
+      </shape>
+    </data>
+    <note id="bHH">
+      <content>
+        <p textAlign="left" lineSpacing="multiple:1.2" defaultTabSize="72"><span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="宋体" bold="false" italic="false" strikethrough="false" underline="false">各位评委好，我的作品是围术期风险评估助手 Agent，简称 PeriRisk Agent，是一个面向麻醉科医生的术前风险评估智能体。</span></p>
+        <p textAlign="left" lineSpacing="multiple:1.2" defaultTabSize="72"><span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="宋体" bold="false" italic="false" strikethrough="false" underline="false">我来自深圳技术大学生物医学工程专业，这个作品是医工交叉方向的一次实践。</span></p>
+      </content>
+    </note>
+  </slide>
+  <slide id="psF">
+    <style>
+      <fill id="fsF">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <img id="bHF" src="MosgbT0mDo7SuXxSKCKcmQxTnIh" width="19.84251968503937" height="19.84251968503937" topLeftX="816.4750393700788" topLeftY="510.0166929133858">
+        <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0"/>
+      </img>
+      <img id="bHw" src="S3yZbS4JjoogcsxVJjMcPFf5nTg" width="69.94685039370079" height="15.590551181102363" topLeftX="839.4658267716535" topLeftY="510.50637795275594">
+        <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0"/>
+      </img>
+      <shape width="845.3894488188977" height="34" topLeftX="27.193858267716507" topLeftY="19.620944881889763" type="text" id="bHZ">
+        <content verticalAlign="top" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="fixed:34.29" marginRight="0" defaultTabSize="93.49"><strong><span color="rgba(192, 0, 0, 1)" fontSize="32" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">围术期风险评估助手 Agent（PeriRisk Agent）</span></strong></p>
+        </content>
+      </shape>
+      <shape width="325.87023622047246" height="29.081259842519685" topLeftX="40.8416535433071" topLeftY="82.98299212598425" presetHandlers="0" type="round-rect" id="bHY">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Calibri" bold="false" italic="false" strikethrough="false" underline="false"><tab/></span><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="思源黑体" bold="false" italic="false" strikethrough="false" underline="false">创意描述</span><strong><span color="rgba(192, 0, 0, 1)" fontSize="18" fontFamily="思源黑体" italic="false" strikethrough="false" underline="false">（必填）</span></strong><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="思源黑体" bold="false" italic="false" strikethrough="false" underline="false">：（</span><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Calibri" bold="false" italic="false" strikethrough="false" underline="false">&lt;500</span><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">字）</span></p>
+        </content>
+      </shape>
+      <shape width="325.87023622047246" height="29.081259842519685" topLeftX="62.80771653543306" topLeftY="399.8092125984252" presetHandlers="0" type="round-rect" id="bHo">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">所属主题</span><strong><span color="rgba(192, 0, 0, 1)" fontSize="18" fontFamily="思源黑体" italic="false" strikethrough="false" underline="false">（必填）</span></strong></p>
+        </content>
+      </shape>
+      <shape width="325.87023622047246" height="29.081259842519685" topLeftX="560.5026771653544" topLeftY="82.98299212598425" presetHandlers="0" type="round-rect" id="bHf">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">应用场景</span><strong><span color="rgba(192, 0, 0, 1)" fontSize="18" fontFamily="思源黑体" italic="false" strikethrough="false" underline="false">（必填）</span></strong></p>
+        </content>
+      </shape>
+      <shape width="941" height="428.0548031496063" topLeftX="7" topLeftY="70.02740157480315" presetHandlers="35.344486" type="round-rect" id="bHB">
+        <border color="rgba(113, 113, 101, 1)" width="1" lineJoin="miter" miterLimit="10"/>
+        <content paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <p textAlign="center" lineSpacing="multiple:1.2" marginRight="0"><span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false"> </span></p>
+        </content>
+      </shape>
+      <line id="bHs" startX="7" startY="393.5488188976378" endX="463.32984251968503" endY="394.5488188976378" type="line">
+        <border color="rgba(111, 111, 111, 1)" dashArray="dash" width="1" lineJoin="miter" miterLimit="10"/>
+        <startArrow widthScale="med" heightScale="med"/>
+        <endArrow widthScale="med" heightScale="med"/>
+      </line>
+      <line id="bHR" startX="457.6270703895165" startY="70.02736233460891" endX="458.6271815789874" endY="498.0833463268084" type="line">
+        <border color="rgba(111, 111, 111, 1)" dashArray="dash" width="1" lineJoin="miter" miterLimit="10"/>
+        <startArrow widthScale="med" heightScale="med"/>
+        <endArrow widthScale="med" heightScale="med"/>
+      </line>
+      <shape width="78.02968503937008" height="29.081259842519685" topLeftX="186.7279527559055" topLeftY="192.61188976377952" presetHandlers="0" type="round-rect" id="bHx">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.8" marginRight="0" defaultTabSize="72"><em><span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="Calibri" bold="false" strikethrough="false" underline="false">&lt;500</span></em><em><span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">字</span></em></p>
+        </content>
+      </shape>
+      <shape width="350.8471653543307" height="36.09913385826771" topLeftX="72.6103937007874" topLeftY="438.96740157480315" presetHandlers="0" type="round-rect" id="bHz">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.8" marginRight="0" defaultTabSize="72"><em><span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">科研</span></em></p>
+        </content>
+      </shape>
+      <shape width="391.11850393700786" height="101.53196850393701" topLeftX="518.0339370078739" topLeftY="244.55385826771652" presetHandlers="0" type="round-rect" id="bHa">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.8" marginRight="0" defaultTabSize="72"><em><span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">面向麻醉科医生与围术期团队：术前评估输入患者病历与监护波形，输出风险分级与麻醉关注点报告；</span></em></p>
+          <p textAlign="left" lineSpacing="multiple:1.8" marginRight="0" defaultTabSize="72"><em><span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">基层医院可借此补齐评估规范性，缓解麻醉医生短缺下的评估质量压力。</span></em></p>
+        </content>
+      </shape>
+      <shape width="400" height="160" topLeftX="47" topLeftY="230" type="text" id="bHU">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" marginRight="0"><span color="rgba(29, 29, 26, 1)" fontSize="14" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">术前风险评估是麻醉科真实刚需：医生手工翻病历、逐项核对 ASA 等评分并对照指南，一次约 20—40 分钟且易漏项，基层医院更缺人。</span></p>
+          <p textAlign="left" marginRight="0"><span color="rgba(29, 29, 26, 1)" fontSize="14" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">PeriRisk Agent 基于大模型 Function Calling 自主调度：输入病历与监护波形，Agent 主动查病历、读波形算心率、按规则判定 ASA 分级，集齐后一键生成【风险评估】【麻醉关注点】【建议】三段式报告。</span></p>
+        </content>
+      </shape>
+      <shape width="115.2" height="32.4" topLeftX="837.6" topLeftY="500.40000000000003" type="text" id="bHM">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="right">
+          <p textAlign="right" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><span color="rgba(128, 128, 128, 1)" fontSize="10" fontFamily="Calibri" bold="false" italic="false" strikethrough="false" underline="false">AI</span><span color="rgba(128, 128, 128, 1)" fontSize="10" fontFamily="思源黑体" bold="false" italic="false" strikethrough="false" underline="false">生成</span></p>
+        </content>
+      </shape>
+    </data>
+    <note id="bHQ">
+      <content>
+        <p textAlign="left" lineSpacing="multiple:1.2" defaultTabSize="72"><span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false">Click to add text</span></p>
+      </content>
+    </note>
+  </slide>
+  <slide id="psV">
+    <style>
+      <fill id="fsV">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <img id="bHT" src="MosgbT0mDo7SuXxSKCKcmQxTnIh" width="19.84251968503937" height="19.84251968503937" topLeftX="816.4750393700788" topLeftY="510.0166929133858">
+        <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0"/>
+      </img>
+      <img id="bHk" src="S3yZbS4JjoogcsxVJjMcPFf5nTg" width="69.94685039370079" height="15.590551181102363" topLeftX="839.4658267716535" topLeftY="510.50637795275594">
+        <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0"/>
+      </img>
+      <shape width="845.3894488188977" height="34" topLeftX="27.193858267716507" topLeftY="19.620944881889763" type="text" id="bHV">
+        <content verticalAlign="top" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="fixed:34.29" marginRight="0" defaultTabSize="93.49"><strong><span color="rgba(192, 0, 0, 1)" fontSize="32" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">创意方案构想</span></strong></p>
+        </content>
+      </shape>
+      <line id="bHy" startX="7" startY="284.0548031496063" endX="948.0005511811023" endY="285.0548031496063" type="line">
+        <border color="rgba(111, 111, 111, 1)" dashArray="dash" width="1" lineJoin="miter" miterLimit="10"/>
+        <startArrow widthScale="med" heightScale="med"/>
+        <endArrow widthScale="med" heightScale="med"/>
+      </line>
+      <line id="bHj" startX="456.3287848842019" startY="285.3082678742338" endX="457.3288529110737" endY="501.00228330686855" type="line">
+        <border color="rgba(111, 111, 111, 1)" dashArray="dash" width="1" lineJoin="miter" miterLimit="10"/>
+        <startArrow widthScale="med" heightScale="med"/>
+        <endArrow widthScale="med" heightScale="med"/>
+      </line>
+      <shape width="941" height="428.0548031496063" topLeftX="7" topLeftY="70.02740157480315" presetHandlers="35.344486" type="round-rect" id="bHg">
+        <border color="rgba(113, 113, 101, 1)" width="1" lineJoin="miter" miterLimit="10"/>
+        <content paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <p textAlign="center" lineSpacing="multiple:1.2" marginRight="0"><span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false"> </span></p>
+        </content>
+      </shape>
+      <shape width="149.70984251968503" height="27" topLeftX="32.73047244094488" topLeftY="296.3316535433071" type="text" id="bHv">
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="center">
+          <p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Microsoft YaHei" bold="false" italic="false" strikethrough="false" underline="false">方案优势（可选）</span></p>
+        </content>
+      </shape>
+      <shape width="190.08472440944882" height="27" topLeftX="23.671181102362198" topLeftY="80.59874015748032" type="text" id="bHd">
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="center">
+          <p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Microsoft YaHei" bold="false" italic="false" strikethrough="false" underline="false">方案详情</span><strong><span color="rgba(192, 0, 0, 1)" fontSize="18" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">（必填）</span></strong></p>
+        </content>
+      </shape>
+      <shape width="156.28055118110237" height="27" topLeftX="467.74362204724406" topLeftY="296.3316535433071" type="text" id="bHX">
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="center">
+          <p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Microsoft YaHei" bold="false" italic="false" strikethrough="false" underline="false">技术依赖（可选）</span></p>
+        </content>
+      </shape>
+      <shape width="425.6569291338583" height="125" topLeftX="480.0006299212598" topLeftY="372.38992125984254" presetHandlers="0" type="round-rect" id="bHI">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">进展：Demo 已跑通，命令行 + Streamlit，GitHub 可复现；5 例批量测试：ASA 分级一致率 </span></em><strong><em><span color="rgba(192, 0, 0, 1)" fontSize="15" fontFamily="DengXian" strikethrough="false" underline="false">100%</span></em></strong><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">、工具调用顺序正确率 </span></em><strong><em><span color="rgba(192, 0, 0, 1)" fontSize="15" fontFamily="DengXian" strikethrough="false" underline="false">100%</span></em></strong><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">，心率算法误差 </span></em><strong><em><span color="rgba(192, 0, 0, 1)" fontSize="15" fontFamily="DengXian" strikethrough="false" underline="false">5.7 次/分</span></em></strong><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">（88.0 vs 监护仪 82.3）；</span></em></p>
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">依赖：DeepSeek API、Python(scipy)、VitalDB；后续接入 openJiuwen / JiuwenSwarm；</span></em></p>
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">Demo：3 分钟视频，展示多轮思考与工具调用，输出三段式报告。</span></em></p>
+        </content>
+      </shape>
+      <shape width="425.6569291338583" height="100" topLeftX="23.671181102362198" topLeftY="372.38992125984254" presetHandlers="0" type="round-rect" id="bHp">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">相比通用大模型直接问答：把信号处理做成 Agent 工具链，结论基于真实波形而非纯文本推测；</span></em></p>
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">结合 VitalDB 公开数据可复现、可验证；学术上沿 Sel(2023) → IOHFuseLM(2025) → wPINNs(2026) 递进落地。</span></em></p>
+        </content>
+      </shape>
+      <shape width="425.6569291338583" height="130" topLeftX="27.193858267716536" topLeftY="155.07330708661416" presetHandlers="0" type="round-rect" id="bHi">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">「大模型决策 + 本地计算」三层架构：</span></em></p>
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">① 应用层：Agent 主循环，自主拆任务、调工具、回填；</span></em></p>
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">② 工具层：病历查询、波形心率检测、ASA 规则引擎；</span></em></p>
+          <p textAlign="left" lineSpacing="multiple:1.4" marginRight="0" defaultTabSize="72"><em><span color="rgba(29, 29, 26, 1)" fontSize="15" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">③ 数据模型层：DeepSeek 出报告，VitalDB 供数，本地算数值。</span></em></p>
+        </content>
+      </shape>
+    </data>
+    <note id="bHm">
+      <content>
+        <p textAlign="left" lineSpacing="multiple:1.2" defaultTabSize="72"><span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false">Click to add text</span></p>
+      </content>
+    </note>
+  </slide>
+  <slide id="pss">
+    <style>
+      <fill id="fss">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <img id="bHO" src="MosgbT0mDo7SuXxSKCKcmQxTnIh" width="19.84251968503937" height="19.84251968503937" topLeftX="816.4750393700788" topLeftY="510.0166929133858">
+        <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0"/>
+      </img>
+      <img id="bHC" src="S3yZbS4JjoogcsxVJjMcPFf5nTg" width="69.94685039370079" height="15.590551181102363" topLeftX="839.4658267716535" topLeftY="510.50637795275594">
+        <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0"/>
+      </img>
+      <shape width="845.3894488188977" height="34" topLeftX="16.414173228346442" topLeftY="22.42370078740157" type="text" id="bHE">
+        <content verticalAlign="top" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" lineSpacing="fixed:34.29" marginRight="0" defaultTabSize="93.45"><strong><span color="rgba(192, 0, 0, 1)" fontSize="32" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">DEMO或示意图（可选，有更好）</span></strong></p>
+        </content>
+      </shape>
+      <shape width="116" height="72" topLeftX="20" topLeftY="120" presetHandlers="9.99936" type="round-rect" id="bHr">
+        <fill>
+          <fillColor color="rgba(192, 0, 0, 0.05)"/>
+        </fill>
+        <border color="rgba(192, 0, 0, 0.55)" width="1" miterLimit="10"/>
+        <content paddingTop="0" paddingBottom="0" paddingLeft="0" paddingRight="0" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <p textAlign="center" lineSpacing="multiple:1.4" marginRight="0"><strong><span color="rgba(192, 0, 0, 1)" fontSize="13" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">输入</span></strong></p>
+          <p textAlign="center" lineSpacing="multiple:1.4" marginRight="0"><span color="rgba(29, 29, 26, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">结构化病历</span></p>
+          <p textAlign="center" lineSpacing="multiple:1.4" marginRight="0"><span color="rgba(29, 29, 26, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">监护波形 PPG</span></p>
+        </content>
+      </shape>
+      <line id="bHe" startX="138.00002748778903" startY="155.99999908673198" endX="158.02501188228973" endY="156.00000091326802">
+        <border color="rgba(192, 0, 0, 0.8)" miterLimit="10"/>
+        <startArrow widthScale="lg" heightScale="lg"/>
+        <endArrow type="arrow" widthScale="lg" heightScale="lg"/>
+      </line>
+      <shape width="148" height="92" topLeftX="160" topLeftY="110" presetHandlers="9.99948" type="round-rect" id="bHN">
+        <fill>
+          <fillColor color="rgba(192, 0, 0, 0.05)"/>
+        </fill>
+        <border color="rgba(192, 0, 0, 0.55)" width="1" miterLimit="10"/>
+        <content paddingTop="0" paddingBottom="0" paddingLeft="0" paddingRight="0" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <p textAlign="center" lineSpacing="multiple:1.4" marginRight="0"><strong><span color="rgba(192, 0, 0, 1)" fontSize="13" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">Agent 工具链</span></strong></p>
+          <p textAlign="center" lineSpacing="multiple:1.4" marginRight="0"><span color="rgba(29, 29, 26, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">① 查病历</span></p>
+          <p textAlign="center" lineSpacing="multiple:1.4" marginRight="0"><span color="rgba(29, 29, 26, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">② 波形心率检测</span></p>
+          <p textAlign="center" lineSpacing="multiple:1.4" marginRight="0"><span color="rgba(29, 29, 26, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">③ ASA 规则分级</span></p>
+        </content>
+      </shape>
+      <line id="bHP" startX="310.000027487789" startY="155.99999908673198" endX="330.0250118822897" endY="156.00000091326802">
+        <border color="rgba(192, 0, 0, 0.8)" miterLimit="10"/>
+        <startArrow widthScale="lg" heightScale="lg"/>
+        <endArrow type="arrow" widthScale="lg" heightScale="lg"/>
+      </line>
+      <shape width="116" height="80" topLeftX="332" topLeftY="116" presetHandlers="10" type="round-rect" id="bHL">
+        <fill>
+          <fillColor color="rgba(192, 0, 0, 1)"/>
+        </fill>
+        <border color="rgba(192, 0, 0, 1)" width="1" miterLimit="10"/>
+        <content paddingTop="0" paddingBottom="0" paddingLeft="0" paddingRight="0" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <p textAlign="center" lineSpacing="multiple:1.3" marginRight="0"><strong><span color="rgba(255, 255, 255, 1)" fontSize="13" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">三段式报告</span></strong></p>
+          <p textAlign="center" lineSpacing="multiple:1.3" marginRight="0"><span color="rgba(255, 255, 255, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">风险评估</span></p>
+          <p textAlign="center" lineSpacing="multiple:1.3" marginRight="0"><span color="rgba(255, 255, 255, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">麻醉关注点</span></p>
+          <p textAlign="center" lineSpacing="multiple:1.3" marginRight="0"><span color="rgba(255, 255, 255, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">建议</span></p>
+        </content>
+      </shape>
+      <shape width="430" height="24" topLeftX="20" topLeftY="228" type="text" id="bHh">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="center">
+          <p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><span color="rgba(128, 128, 128, 1)" fontSize="12" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">PeriRisk Agent 评估链路示意（输入 → 报告生成）</span></p>
+        </content>
+      </shape>
+      <shape width="455" height="320" topLeftX="480" topLeftY="95" presetHandlers="0" type="round-rect" id="bHD">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <p textAlign="left" marginRight="0" defaultTabSize="72"><strong><span color="rgba(29, 29, 26, 1)" fontSize="16" fontFamily="DengXian" italic="false" strikethrough="false" underline="false">触发时机：</span></strong><span color="rgba(29, 29, 26, 1)" fontSize="16" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">麻醉医生术前评估环节，医生下达评估任务后 Agent 自主执行</span></p>
+          <p textAlign="left" marginRight="0" defaultTabSize="72"><strong><span color="rgba(29, 29, 26, 1)" fontSize="16" fontFamily="DengXian" italic="false" strikethrough="false" underline="false">输入输出：</span></strong><span color="rgba(29, 29, 26, 1)" fontSize="16" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">输入结构化病历 + 监护波形；输出 ASA 风险分级与三段式评估报告（附工具返回依据）</span></p>
+          <p textAlign="left" marginRight="0" defaultTabSize="72"><strong><span color="rgba(29, 29, 26, 1)" fontSize="16" fontFamily="DengXian" italic="false" strikethrough="false" underline="false">关键路径：</span></strong><span color="rgba(29, 29, 26, 1)" fontSize="16" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">查病历 → 波形心率检测 → ASA 规则分级 → 信息集齐生成报告</span></p>
+        </content>
+      </shape>
+    </data>
+    <note id="bHc">
+      <content>
+        <p textAlign="left" lineSpacing="multiple:1.2" defaultTabSize="72"><span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false">Click to add text</span></p>
+      </content>
+    </note>
+  </slide>
+  <slide id="psO">
+    <style>
+      <fill id="fsO">
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+    </style>
+    <data>
+      <img id="bHb" src="KnjRbzYKSoIfJRxXIhFcODzPnSe" width="960" height="164.14771653543306" topLeftX="0" topLeftY="187.92614173228347">
+        <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0"/>
+      </img>
+      <shape width="308.62220472440947" height="65.42267716535433" topLeftX="43.8508661417323" topLeftY="224.91937007874014" type="text" id="bHW">
+        <content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left" wrap="false">
+          <p textAlign="left" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="71.95"><strong><span color="rgba(23, 92, 254, 1)" fontSize="48" fontFamily="Arial" italic="false" strikethrough="false" underline="false">Thank you.</span></strong></p>
+        </content>
+      </shape>
+      <img id="bHn" src="WO9RbqY0uosiN6xX1k4cPlnnnpc" width="120" height="42.5" topLeftX="840" topLeftY="497.5">
+        <crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0"/>
+      </img>
+    </data>
+    <note id="bHG">
+      <content>
+        <p textAlign="left" lineSpacing="multiple:1.2" defaultTabSize="72"><span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="宋体" bold="false" italic="false" strikethrough="false" underline="false">感谢各位评委的聆听，欢迎对我的 PeriRisk Agent 创意提出意见，谢谢。</span></p>
+      </content>
+    </note>
+  </slide>
+</presentation>

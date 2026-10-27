@@ -1,0 +1,14 @@
+PeriRisk 现场操作卡
+
+1. 打开 slides\PeriRisk参赛PPT.pdf
+2. 需要代码演示时：
+   cd code
+   python demo_asa_cases.py
+3. 没有 Python：
+   只放 PDF + assets 截图 + video 录屏
+4. 不运行 reference_peririsk_agent.py
+5. 不输入 API Key
+6. 13:30 到场，13:45 停止改材料
+
+一句话主线：
+大模型负责调度，ASA 和心率由本地确定性代码计算。

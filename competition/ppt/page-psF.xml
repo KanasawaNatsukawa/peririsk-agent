@@ -1,0 +1,84 @@
+<ns0:slide xmlns:ns0="https://www.larkoffice.com/sml/2.0" id="psF">
+    <ns0:style>
+      <ns0:fill id="fsF">
+        <ns0:fillColor color="rgba(255, 255, 255, 1)" />
+      </ns0:fill>
+    </ns0:style>
+    <ns0:data>
+      <ns0:img id="bHF" src="MosgbT0mDo7SuXxSKCKcmQxTnIh" width="19.84251968503937" height="19.84251968503937" topLeftX="816.4750393700788" topLeftY="510.0166929133858">
+        <ns0:crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+      </ns0:img>
+      <ns0:img id="bHw" src="S3yZbS4JjoogcsxVJjMcPFf5nTg" width="69.94685039370079" height="15.590551181102363" topLeftX="839.4658267716535" topLeftY="510.50637795275594">
+        <ns0:crop leftOffset="0" rightOffset="0" topOffset="0" bottomOffset="0" />
+      </ns0:img>
+      <ns0:shape width="845.3894488188977" height="34" topLeftX="27.193858267716507" topLeftY="19.620944881889763" type="text" id="bHZ">
+        <ns0:content verticalAlign="top" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="fixed:34.29" marginRight="0" defaultTabSize="93.49"><ns0:strong><ns0:span color="rgba(192, 0, 0, 1)" fontSize="32" fontFamily="Microsoft YaHei" italic="false" strikethrough="false" underline="false">围术期风险评估助手 Agent（PeriRisk Agent）</ns0:span></ns0:strong></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="325.87023622047246" height="29.081259842519685" topLeftX="40.8416535433071" topLeftY="82.98299212598425" presetHandlers="0" type="round-rect" id="bHY">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Calibri" bold="false" italic="false" strikethrough="false" underline="false"><ns0:tab /></ns0:span><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="思源黑体" bold="false" italic="false" strikethrough="false" underline="false">创意描述</ns0:span><ns0:strong><ns0:span color="rgba(192, 0, 0, 1)" fontSize="18" fontFamily="思源黑体" italic="false" strikethrough="false" underline="false">（必填）</ns0:span></ns0:strong><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="思源黑体" bold="false" italic="false" strikethrough="false" underline="false">：（</ns0:span><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="Calibri" bold="false" italic="false" strikethrough="false" underline="false">&lt;500</ns0:span><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">字）</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="325.87023622047246" height="29.081259842519685" topLeftX="62.80771653543306" topLeftY="399.8092125984252" presetHandlers="0" type="round-rect" id="bHo">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <ns0:p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">所属主题</ns0:span><ns0:strong><ns0:span color="rgba(192, 0, 0, 1)" fontSize="18" fontFamily="思源黑体" italic="false" strikethrough="false" underline="false">（必填）</ns0:span></ns0:strong></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="325.87023622047246" height="29.081259842519685" topLeftX="560.5026771653544" topLeftY="82.98299212598425" presetHandlers="0" type="round-rect" id="bHf">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <ns0:p textAlign="center" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><ns0:span color="rgba(29, 29, 26, 1)" fontSize="18" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">应用场景</ns0:span><ns0:strong><ns0:span color="rgba(192, 0, 0, 1)" fontSize="18" fontFamily="思源黑体" italic="false" strikethrough="false" underline="false">（必填）</ns0:span></ns0:strong></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="941" height="428.0548031496063" topLeftX="7" topLeftY="70.02740157480315" presetHandlers="35.344486" type="round-rect" id="bHB">
+        <ns0:border color="rgba(113, 113, 101, 1)" width="1" lineJoin="miter" miterLimit="10" />
+        <ns0:content paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)">
+          <ns0:p textAlign="center" lineSpacing="multiple:1.2" marginRight="0"><ns0:span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false"> </ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:line id="bHs" startX="7" startY="393.5488188976378" endX="463.32984251968503" endY="394.5488188976378" type="line">
+        <ns0:border color="rgba(111, 111, 111, 1)" dashArray="dash" width="1" lineJoin="miter" miterLimit="10" />
+        <ns0:startArrow widthScale="med" heightScale="med" />
+        <ns0:endArrow widthScale="med" heightScale="med" />
+      </ns0:line>
+      <ns0:line id="bHR" startX="457.6270703895165" startY="70.02736233460891" endX="458.6271815789874" endY="498.0833463268084" type="line">
+        <ns0:border color="rgba(111, 111, 111, 1)" dashArray="dash" width="1" lineJoin="miter" miterLimit="10" />
+        <ns0:startArrow widthScale="med" heightScale="med" />
+        <ns0:endArrow widthScale="med" heightScale="med" />
+      </ns0:line>
+      <ns0:shape width="78.02968503937008" height="29.081259842519685" topLeftX="186.7279527559055" topLeftY="192.61188976377952" presetHandlers="0" type="round-rect" id="bHx">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="multiple:1.8" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="Calibri" bold="false" strikethrough="false" underline="false">&lt;500</ns0:span></ns0:em><ns0:em><ns0:span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">字</ns0:span></ns0:em></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="350.8471653543307" height="36.09913385826771" topLeftX="72.6103937007874" topLeftY="438.96740157480315" presetHandlers="0" type="round-rect" id="bHz">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="multiple:1.8" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">科研</ns0:span></ns0:em></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="391.11850393700786" height="101.53196850393701" topLeftX="518.0339370078739" topLeftY="244.55385826771652" presetHandlers="0" type="round-rect" id="bHa">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" lineSpacing="multiple:1.8" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">面向麻醉科医生与围术期团队：术前评估输入患者病历与监护波形，输出风险分级与麻醉关注点报告；</ns0:span></ns0:em></ns0:p>
+          <ns0:p textAlign="left" lineSpacing="multiple:1.8" marginRight="0" defaultTabSize="72"><ns0:em><ns0:span color="rgba(0, 112, 192, 1)" fontSize="18" fontFamily="DengXian" bold="false" strikethrough="false" underline="false">基层医院可借此补齐评估规范性，缓解麻醉医生短缺下的评估质量压力。</ns0:span></ns0:em></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="400" height="160" topLeftX="47" topLeftY="230" type="text" id="bHU">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="left">
+          <ns0:p textAlign="left" marginRight="0"><ns0:span color="rgba(29, 29, 26, 1)" fontSize="14" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">术前风险评估是麻醉科真实刚需：医生手工翻病历、逐项核对 ASA 等评分并对照指南，一次约 20—40 分钟且易漏项，基层医院更缺人。</ns0:span></ns0:p>
+          <ns0:p textAlign="left" marginRight="0"><ns0:span color="rgba(29, 29, 26, 1)" fontSize="14" fontFamily="DengXian" bold="false" italic="false" strikethrough="false" underline="false">PeriRisk Agent 基于大模型 Function Calling 自主调度：输入病历与监护波形，Agent 主动查病历、读波形算心率、按规则判定 ASA 分级，集齐后一键生成【风险评估】【麻醉关注点】【建议】三段式报告。</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="115.2" height="32.4" topLeftX="837.6" topLeftY="500.40000000000003" type="text" id="bHM">
+        <ns0:content verticalAlign="top" paddingTop="3.6" paddingBottom="3.6" paddingLeft="7.2" paddingRight="7.2" fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" textAlign="right">
+          <ns0:p textAlign="right" lineSpacing="multiple:1.2" marginRight="0" defaultTabSize="72"><ns0:span color="rgba(128, 128, 128, 1)" fontSize="10" fontFamily="Calibri" bold="false" italic="false" strikethrough="false" underline="false">AI</ns0:span><ns0:span color="rgba(128, 128, 128, 1)" fontSize="10" fontFamily="思源黑体" bold="false" italic="false" strikethrough="false" underline="false">生成</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+    </ns0:data>
+    <ns0:note id="bHQ">
+      <ns0:content>
+        <ns0:p textAlign="left" lineSpacing="multiple:1.2" defaultTabSize="72"><ns0:span color="rgba(0, 0, 0, 1)" fontSize="14" fontFamily="Arial" bold="false" italic="false" strikethrough="false" underline="false">Click to add text</ns0:span></ns0:p>
+      </ns0:content>
+    </ns0:note>
+  </ns0:slide>
+  
