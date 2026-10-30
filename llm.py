@@ -47,14 +47,19 @@ def generate_report(summary):
     return resp.json()["choices"][0]["message"]["content"]
 
 
-def chat_with_tools(messages, tools, timeout=60):
+def chat_with_tools(messages, tools, timeout=60, temperature=0.2):
     """带"工具菜单"的对话：把 tools（JSON Schema 列表）一并发给大脑。
 
     返回响应里的那条 assistant 消息（dict），调用方要看它点了什么菜：
       - 含 tool_calls → 大脑点名了工具，调用方本地执行后把结果回填进对话
       - 只有 content  → 大脑认为信息够了，直接给出最终回答
     """
-    payload = {"model": MODEL, "messages": messages, "tools": tools}
+    payload = {
+        "model": MODEL,
+        "messages": messages,
+        "tools": tools,
+        "temperature": temperature,
+    }
     resp = requests.post(
         API_URL,
         headers={

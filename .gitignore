@@ -12,5 +12,6 @@ Thumbs.db
 # 本地 PPT 构建和检查中间产物
 work/
 output/
+tmp/
 *.inspect.ndjson
 final-inspect.ndjson

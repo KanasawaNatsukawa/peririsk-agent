@@ -17,6 +17,7 @@ import threading
 import time
 
 from llm import chat_with_tools
+from report_guard import build_correction_message, validate_report
 from runtime_state import set_patient
 from tools import TOOL_FUNCTIONS, TOOLS
 
@@ -76,10 +77,15 @@ class Spinner:
 # ============================================================
 
 SYSTEM_PROMPT = (
-    "你是术前风险评估协调员。请按需调用工具收集信息："
-    "① 查病历；② 分析监护波形得到心率；③ 计算 ASA 分级。"
-    "信息收集齐后，停止调用工具，直接输出一份术前风险评估报告，"
-    "格式包含三部分：【风险评估】【麻醉关注点】【建议】。\n"
+    "你是术前风险评估协调员。请根据用户任务和已有工具结果决定下一步，"
+    "不要无条件调用全部工具。\n"
+    "默认完整评估路径：① 查病历；② 检查病例数据和波形质量；"
+    "③ 分析 60 秒 PPG 得到心率，波形工具会自动从 120 秒原始数据中"
+    "选择质量最好且前后半段最稳定的窗口；④ 若算法心率与 PLETH_HR 差值超过 3 次/分，"
+    "调用 compare_hr_windows 比较 [30, 60] 秒窗口；⑤ 计算 ASA 分级；"
+    "⑥ 信息齐备后输出三段式报告。\n"
+    "如果用户只要求心率，不要调用 ASA，也不要输出完整风险评估报告。"
+    "如果数据质量检查明确不可继续，不要猜测心率或分级，应说明缺失或质量问题。\n"
     "数据引用规则（必须严格遵守）：\n"
     "1. 报告中【每一条结论】的句末，都要用括号附上它实际引用的工具返回值，例如："
     "（依据：病历工具返回 年龄68岁、收缩压158mmHg；心率工具返回 算法心率87.0次/分、PLETH_HR87.8次/分；"
@@ -89,16 +95,33 @@ SYSTEM_PROMPT = (
     "工具未返回的信息——工具不返回性别（绝不能写\"男性/女性\"）、舒张压、高血压诊断、"
     "冠脉造影结果等，这些一律不能写。布尔值一律写成\"有/无\"或\"是/否\"，"
     "不要直接出现 true/false 字样。\n"
-    "3. 三个工具返回的字段仅限于："
-    "病历工具 get_patient_record（姓名、年龄、冠心病、糖尿病、肾功能不全、病情不稳定、收缩压、波形ID）；"
-    "心率工具 analyze_waveform（波形ID、分析时长秒、参考窗口秒、检测心跳次数、算法心率、PLETH_HR、HR、监护仪对照心率）；"
-    "ASA规则引擎 assess_asa_grade（ASA分级）。\n"
+    "3. 五个工具返回的字段仅限于："
+    "病历工具 get_patient_record（姓名、年龄、冠心病、糖尿病、肾功能不全、病情不稳定、BMI、活动性恶性肿瘤、收缩压、急诊手术、困难气道、波形ID）；"
+    "数据检查工具 validate_case_data（波形ID、原始数据时长秒、检查时长秒、选择窗口起始秒、选择窗口结束秒、候选窗口数、选窗说明、病历字段完整、缺失病历字段、采样点数、有效采样点比例、异常采样点、异常采样点比例、影响峰值检测的异常点、波形最小值、波形最大值、波形峰峰值、波形质量、问题、是否可以继续分析）；"
+    "心率工具 analyze_waveform（波形ID、原始数据时长秒、分析窗口起始秒、分析窗口结束秒、候选窗口数、窗口选择说明、分析时长秒、参考窗口秒、检测心跳次数、算法心率、PLETH_HR、HR、监护仪对照心率）；"
+    "窗口稳定性工具 compare_hr_windows（波形ID、比较窗口起始秒、比较窗口结束秒、候选窗口数、选窗说明、比较窗口秒、各窗口结果、最大心率差、稳定阈值、是否稳定）；"
+    "ASA规则引擎 assess_asa_grade（ASA分级、急诊标识、困难气道关注）。\n"
     "4. 某条结论找不到工具返回值支撑，就不要写这条结论；工具没返回的信息不要出现在依据里。\n"
     "5. 三段式结构和现有措辞风格保持不变，只在每条结论句末补括号依据，不要单独罗列数据清单。\n"
-    "6. 调用 analyze_waveform 时，先使用病历工具返回的波形ID；除非用户明确要求比较不同窗口，否则 segment_seconds 固定传 60。"
+    "6. 调用波形工具时，先使用病历工具返回的波形ID；完整评估默认使用 60 秒。"
 )
 
-MAX_ROUNDS = 8   # 安全阀：防止大脑陷入死循环烧钱
+MAX_ROUNDS = 10   # 安全阀：防止大脑陷入死循环烧钱
+
+
+def _needs_report_guard(task, report):
+    """只在确实要求完整报告时执行三段式和证据校验。"""
+    if any(section in report for section in ("【风险评估】", "【麻醉关注点】", "【建议】")):
+        return True
+    if any(
+        phrase in task
+        for phrase in ("不要生成", "不生成", "无需报告", "只要心率", "只计算心率")
+    ):
+        return False
+    return any(
+        phrase in task
+        for phrase in ("完整术前风险评估", "风险评估报告", "输出报告", "生成报告")
+    )
 
 
 def run_agent(task, on_event=None):
@@ -113,6 +136,7 @@ def run_agent(task, on_event=None):
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": task},
     ]
+    guard_retry_count = 0
     for round_no in range(1, MAX_ROUNDS + 1):
         # —— 1) 通知：进入第 N 轮思考 ——
         if on_event:
@@ -128,7 +152,32 @@ def run_agent(task, on_event=None):
         calls = msg.get("tool_calls")
         if not calls:
             # 大脑不再点名工具 = 它认为信息够了，content 就是最终报告
-            return msg["content"], round_no
+            report = msg.get("content", "")
+            should_guard = _needs_report_guard(task, report)
+            if should_guard:
+                validation = validate_report(report)
+                if on_event:
+                    on_event({
+                        "type": "report_validation",
+                        "passed": validation["通过"],
+                        "issues": validation["问题"],
+                    })
+                elif validation["通过"]:
+                    print(f"{GREEN}      ✓ 程序校验：报告字段与依据格式通过{RESET}")
+                else:
+                    print(
+                        f"{YELLOW}      ! 程序校验未通过："
+                        f"{'；'.join(validation['问题'])}{RESET}"
+                    )
+                if not validation["通过"] and guard_retry_count < 2:
+                    messages.append({"role": "assistant", "content": report})
+                    messages.append({
+                        "role": "user",
+                        "content": build_correction_message(validation),
+                    })
+                    guard_retry_count += 1
+                    continue
+            return report, round_no
         # API 规则：大脑的"点名单"必须原样放回对话历史，工具结果才能对上号
         messages.append(msg)
         for call in calls:
@@ -157,7 +206,10 @@ def run_agent(task, on_event=None):
                 "tool_call_id": call["id"],               # 凭这个 id 和点名单对账
                 "content": json.dumps(result, ensure_ascii=False),
             })
-    return "（达到最大思考轮数，强制停止）", MAX_ROUNDS
+    return (
+        f"（达到最大思考轮数 {MAX_ROUNDS}，强制停止）",
+        MAX_ROUNDS,
+    )
 
 
 def print_report(report):

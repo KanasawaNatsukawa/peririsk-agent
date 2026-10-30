@@ -10,7 +10,8 @@ SCHEMA = {
         "name": "get_patient_record",
         "description": (
             "查询患者病历，返回年龄、既往史（冠心病/糖尿病/肾功能不全/"
-            "病情是否稳定）、收缩压和波形ID。"
+            "病情是否稳定/活动性恶性肿瘤）、BMI、收缩压、急诊手术、"
+            "困难气道和波形ID。"
         ),
         "parameters": {"type": "object", "properties": {}},
     },

@@ -12,3 +12,10 @@
 | `PeriRisk_补充材料.zip` | 旧版补充材料压缩包 |
 
 注意：材料里仍可能写着旧截止日 2026-10-31；用户提供的最新口径是 2026-11-10，提交前需要统一更新。
+
+当前执行计划与提交要求见
+[`checklist/submission-plan-2026-11-10.md`](checklist/submission-plan-2026-11-10.md)。
+
+当前创意提交 PPT：
+
+- `ppt/PeriRisk_创意提交_最终版_20病例.pptx`

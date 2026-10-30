@@ -7,6 +7,7 @@
 import unittest
 
 from asa_risk import GRADE_TEXT, assess_asa
+from tools.asa_grade import assess_asa_grade
 
 
 class TestAsaRisk(unittest.TestCase):
@@ -45,6 +46,45 @@ class TestAsaRisk(unittest.TestCase):
     def test_missing_bp_keeps_legacy_behavior(self):
         grade = assess_asa(68, True, False, False, False, None)
         self.assertEqual(grade, GRADE_TEXT[3])
+
+    def test_bmi_floors_are_applied(self):
+        grade_30 = assess_asa(
+            50, False, False, False, False, 120, bmi=30
+        )
+        grade_40 = assess_asa(
+            50, False, False, False, False, 120, bmi=40
+        )
+        self.assertEqual(grade_30, GRADE_TEXT[2])
+        self.assertEqual(grade_40, GRADE_TEXT[3])
+
+    def test_active_malignancy_raises_to_grade_3(self):
+        grade = assess_asa(
+            50,
+            False,
+            False,
+            False,
+            False,
+            120,
+            active_malignancy=True,
+        )
+        self.assertEqual(grade, GRADE_TEXT[3])
+
+    def test_emergency_and_airway_are_modifiers(self):
+        result = assess_asa_grade(
+            50,
+            False,
+            False,
+            False,
+            False,
+            120,
+            bmi=24,
+            active_malignancy=False,
+            emergency_surgery=True,
+            difficult_airway=True,
+        )
+        self.assertEqual(result["ASA分级"], GRADE_TEXT[1])
+        self.assertEqual(result["急诊标识"], "E")
+        self.assertIn("困难气道", result["困难气道关注"])
 
 
 if __name__ == "__main__":

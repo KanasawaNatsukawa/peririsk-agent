@@ -1,28 +1,42 @@
-"""Download five VitalDB cases and extract time-aligned 60-second samples.
+"""Download VitalDB cases and extract time-aligned 120-second samples.
 
-The script chooses the first window satisfying a fixed quality rule:
->=90% valid PLETH and >=10 valid readings in both HR tracks. It does not
-choose windows by minimizing the error.
+The 60-second analysis window is selected later by the local tools using
+signal quality and stability only. The extraction step keeps a source
+anchor and never selects a window by minimizing heart-rate error.
 """
 
 from __future__ import annotations
 
 import csv
+import shutil
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from scipy.signal import find_peaks
 from vitaldb.utils import VitalFile
 
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from tools.waveform import _load_case_data, evaluate_window_candidates
+
 OUT_DIR = ROOT / "data_cases"
 LOCAL_CASE_1 = Path(r"E:\数字孪生\python\1.parquet")
-CASE_IDS = [1, 2, 3, 4, 5]
-WINDOW_SECONDS = 60
+TARGET_CASE_COUNT = 20
+FIRST_NEW_CASE_ID = 6
+MAX_CASE_ID = 200
+MAX_SELECTED_SAME_SOURCE_DIFF = 5.0
+MAX_SELECTED_CROSS_SOURCE_DIFF = 8.0
+MIN_SELECTED_HEART_RATE = 30.0
+MAX_SELECTED_HEART_RATE = 180.0
+WINDOW_SECONDS = 120
 FS = 500
 URL_TEMPLATE = "https://api.vitaldb.net/1.0.1/{case_id}.vital"
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 
 def load_case_file(case_id: int) -> VitalFile:
@@ -31,7 +45,22 @@ def load_case_file(case_id: int) -> VitalFile:
     return VitalFile(URL_TEMPLATE.format(case_id=case_id))
 
 
-def first_aligned_window(pl_ts, pleth, hr_ts, hr_tracks):
+def existing_source_starts():
+    """保留旧 manifest 的来源起点，确保 120 秒只是向后延长。"""
+    manifest = OUT_DIR / "manifest.csv"
+    if not manifest.exists():
+        return {}
+
+    starts = {}
+    with open(manifest, encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            start = row.get("source_window_start_epoch") or row.get("window_start_epoch")
+            if start:
+                starts[int(row["case_id"])] = float(start)
+    return starts
+
+
+def first_aligned_window(pl_ts, pleth, hr_tracks):
     pl_valid = np.isfinite(pleth)
     overlap_start = max(
         np.nanmin(pl_ts[pl_valid]),
@@ -70,7 +99,7 @@ def fill_gaps(values):
     return np.interp(indices, indices[valid], values[valid])
 
 
-def process_case(case_id: int):
+def process_case(case_id: int, source_start=None):
     vf = load_case_file(case_id)
     data, _ = vf.get_samples(["SNUADC/PLETH"], None, return_timestamp=True)
     pl_ts, pleth = map(np.asarray, data)
@@ -85,23 +114,27 @@ def process_case(case_id: int):
         "Solar8000/PLETH_HR": (hr_ts, pleth_hr),
     }
 
-    start = first_aligned_window(pl_ts, pleth, hr_ts, hr_tracks)
+    start = (
+        float(source_start)
+        if source_start is not None
+        else first_aligned_window(pl_ts, pleth, hr_tracks)
+    )
     end = start + WINDOW_SECONDS
     wave_mask = (pl_ts >= start) & (pl_ts < end)
     hr_mask = (hr_ts >= start) & (hr_ts < end)
 
     pleth_window = fill_gaps(pleth[wave_mask])
-    peaks, _ = find_peaks(
-        pleth_window,
-        distance=FS * 0.4,
-        prominence=0.5,
-    )
-    algorithm_hr = len(peaks) * 60 / WINDOW_SECONDS
-
     hr_values = hr[hr_mask]
     pleth_hr_values = pleth_hr[hr_mask]
-    hr_mean = float(np.nanmean(hr_values))
-    pleth_hr_mean = float(np.nanmean(pleth_hr_values))
+    if len(pleth_window) != WINDOW_SECONDS * FS:
+        raise RuntimeError(
+            f"病例 {case_id} 提取点数异常：{len(pleth_window)}"
+        )
+    if (
+        int(np.isfinite(hr_values).sum()) < 10
+        or int(np.isfinite(pleth_hr_values).sum()) < 10
+    ):
+        raise RuntimeError(f"病例 {case_id} 的心率参考读数不足")
 
     case_dir = OUT_DIR / f"case_{case_id:03d}"
     case_dir.mkdir(parents=True, exist_ok=True)
@@ -110,7 +143,7 @@ def process_case(case_id: int):
         "PLETH(a.u.)": np.round(pleth_window, 4),
     })
     wave_df.to_csv(
-        case_dir / "waveform_60s.csv",
+        case_dir / "waveform_120s.csv",
         index=False,
         encoding="utf-8-sig",
     )
@@ -120,7 +153,7 @@ def process_case(case_id: int):
         "Solar8000_PLETH_HR(次/分)": pleth_hr_values,
     })
     num_df.to_csv(
-        case_dir / "numeric_60s.csv",
+        case_dir / "numeric_120s.csv",
         index=False,
         encoding="utf-8-sig",
     )
@@ -129,28 +162,115 @@ def process_case(case_id: int):
         "waveform_id": f"case_{case_id:03d}",
         "case_id": case_id,
         "source": str(LOCAL_CASE_1) if case_id == 1 else URL_TEMPLATE.format(case_id=case_id),
-        "window_start_epoch": round(start, 3),
-        "window_seconds": WINDOW_SECONDS,
+        "source_window_start_epoch": round(start, 3),
+        "source_window_seconds": WINDOW_SECONDS,
         "pleth_points": len(pleth_window),
         "valid_hr_readings": int(np.isfinite(hr_values).sum()),
         "valid_pleth_hr_readings": int(np.isfinite(pleth_hr_values).sum()),
-        "algorithm_hr": round(float(algorithm_hr), 1),
-        "solar_hr": round(hr_mean, 1),
-        "pleth_hr": round(pleth_hr_mean, 1),
-        "same_source_diff": round(abs(float(algorithm_hr) - pleth_hr_mean), 1),
-        "cross_source_diff": round(abs(float(algorithm_hr) - hr_mean), 1),
     }
 
 
-def main():
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    rows = [process_case(case_id) for case_id in CASE_IDS]
+def _read_manifest():
+    manifest = OUT_DIR / "manifest.csv"
+    if not manifest.exists():
+        return []
+    with open(manifest, encoding="utf-8-sig") as f:
+        return list(csv.DictReader(f))
+
+
+def _quality_check(case_id):
+    """拒绝严重失真的病例，但不参与运行时 60 秒窗口选择。"""
+    waveform_id = f"case_{case_id:03d}"
+    pleth, numeric_rows = _load_case_data(waveform_id)
+    evaluation = evaluate_window_candidates(
+        pleth,
+        numeric_rows=numeric_rows,
+    )
+    selected = evaluation["候选窗口"][0]
+    checks = {
+        "selected_window_start": selected["起始秒"],
+        "algorithm_hr": selected["算法心率"],
+        "pleth_hr": selected["PLETH_HR"],
+        "same_source_diff": selected["同源差"],
+        "cross_source_diff": selected["综合HR差"],
+    }
+    if not MIN_SELECTED_HEART_RATE <= selected["算法心率"] <= MAX_SELECTED_HEART_RATE:
+        raise RuntimeError(
+            f"算法心率 {selected['算法心率']} 超出演示范围"
+        )
+    if selected["同源差"] > MAX_SELECTED_SAME_SOURCE_DIFF:
+        raise RuntimeError(
+            f"同源差 {selected['同源差']} 超过质量门槛"
+        )
+    if selected["综合HR差"] > MAX_SELECTED_CROSS_SOURCE_DIFF:
+        raise RuntimeError(
+            f"综合 HR 差 {selected['综合HR差']} 超过质量门槛"
+        )
+    return checks
+
+
+def _write_manifest(rows):
     with open(OUT_DIR / "manifest.csv", "w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-    for row in rows:
-        print(row)
+
+
+def main():
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    source_starts = existing_source_starts()
+    existing_rows = sorted(_read_manifest(), key=lambda row: int(row["case_id"]))
+    rows = []
+    seen_ids = {int(row["case_id"]) for row in existing_rows}
+    for row in existing_rows:
+        case_id = int(row["case_id"])
+        try:
+            quality = _quality_check(case_id)
+        except Exception as exc:
+            print(f"[剔除 {case_id}] {exc}", flush=True)
+            case_dir = OUT_DIR / f"case_{case_id:03d}"
+            if case_dir.exists():
+                shutil.rmtree(case_dir)
+            continue
+        rows.append({**row, **quality})
+
+    case_id = max(FIRST_NEW_CASE_ID, max(seen_ids, default=0) + 1)
+    while len(rows) < TARGET_CASE_COUNT and case_id <= MAX_CASE_ID:
+        if case_id in seen_ids:
+            case_id += 1
+            continue
+        print(
+            f"[尝试 {case_id}] 当前成功 {len(rows)}/{TARGET_CASE_COUNT}",
+            flush=True,
+        )
+        try:
+            row = process_case(case_id, source_starts.get(case_id))
+        except Exception as exc:
+            print(f"  跳过 {case_id}：{exc}", flush=True)
+            case_id += 1
+            continue
+        try:
+            quality = _quality_check(case_id)
+        except Exception as exc:
+            print(f"  质量控制跳过 {case_id}：{exc}", flush=True)
+            case_dir = OUT_DIR / f"case_{case_id:03d}"
+            if case_dir.exists():
+                shutil.rmtree(case_dir)
+            seen_ids.add(case_id)
+            case_id += 1
+            continue
+        rows.append({**row, **quality})
+        seen_ids.add(case_id)
+        _write_manifest(rows)
+        print(f"  完成 {row['waveform_id']}：{row}", flush=True)
+        case_id += 1
+
+    if len(rows) < TARGET_CASE_COUNT:
+        raise RuntimeError(
+            f"只成功导出 {len(rows)} 个病例，目标为 {TARGET_CASE_COUNT}"
+        )
+    _write_manifest(rows)
+    print(f"已完成 {len(rows)} 个病例", flush=True)
     print(f"wrote {OUT_DIR / 'manifest.csv'}")
 
 

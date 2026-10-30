@@ -17,12 +17,20 @@ GRADE_TEXT = {
 }
 
 
-def assess_asa(age, has_heart_disease, has_diabetes, has_kidney_failure, unstable,
-               systolic_bp=None):
+def assess_asa(
+    age,
+    has_heart_disease,
+    has_diabetes,
+    has_kidney_failure,
+    unstable,
+    systolic_bp=None,
+    bmi=None,
+    active_malignancy=False,
+):
     """按简化规则算 ASA 分级。
 
-    systolic_bp：收缩压（mmHg），不传（None）表示不考虑血压，
-    这样旧调用方一行不改也能继续运行。
+    systolic_bp：收缩压（mmHg），不传（None）表示不考虑血压。
+    bmi 与 active_malignancy 是简化的风险地板输入，旧调用方可不传。
     血压只负责"抬高级别"：先按原规则定一个基础级别，再算血压给出的地板级别，
     两者取高——高血压不会让一个原本 IV/V 级的患者被降级。
     """
@@ -37,6 +45,16 @@ def assess_asa(age, has_heart_disease, has_diabetes, has_kidney_failure, unstabl
         level = 2
     else:
         level = 1
+
+    # ---- 额外系统性疾病地板（简化演示规则）----
+    # 正式 ASA 需结合全身状态判断，这里的 BMI 与活动性肿瘤阈值只用于教学演示。
+    if active_malignancy:
+        level = max(level, 3)
+    if bmi is not None:
+        if bmi >= 40:
+            level = max(level, 3)
+        elif bmi >= 30:
+            level = max(level, 2)
 
     # ---- 血压地板：未控制的高血压本身构成系统性疾病 ----
     # 演示阈值（参考高血压分级做了简化）：
@@ -65,6 +83,8 @@ if __name__ == "__main__":
         "肾功能不全": False,
         "病情不稳定": False,
         "收缩压": 158,        # 偏高，但冠心病已把级别定到 III，血压不再改变结果
+        "BMI": 26.8,
+        "活动性恶性肿瘤": False,
     }
     grade = assess_asa(
         patient["年龄"],
@@ -73,5 +93,7 @@ if __name__ == "__main__":
         patient["肾功能不全"],
         patient["病情不稳定"],
         patient["收缩压"],
+        patient["BMI"],
+        patient["活动性恶性肿瘤"],
     )
     print(f"患者 {patient['姓名']}（{patient['年龄']} 岁）→ ASA {grade}")
