@@ -66,6 +66,8 @@
 - `window_policy_comparison.csv` — 四种选窗策略的逐病例误差与最终窗口
 - `heart_rate_parameter_search.csv` — 40 组 prominence × distance 参数搜索结果
 - `competition/ppt/PeriRisk_创意提交_最终版_20病例.pptx` — 当前创意提交演示文稿
+- `competition/submission_materials/07_原创性与新增贡献说明.md` — 既有基础、新增贡献与 AI 辅助说明
+- `competition/submission_materials/08_第三方依赖与许可证.md` — 第三方依赖与许可证
 
 数据：
 - `data_cases/` — 20 个不同 VitalDB 病例的配对 120 秒波形，患者与波形 ID 一一绑定
