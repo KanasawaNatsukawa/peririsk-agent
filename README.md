@@ -35,7 +35,7 @@
 ## 怎么用
 
 1. 装依赖：`pip install requests scipy numpy streamlit`
-2. 去 DeepSeek 开放平台创建 API Key，填进 `config.py`
+2. 复制 `config.example.py` 为 `config.py`，再填入本地 DeepSeek API Key
 3. 两种入口：
    - **命令行 Agent**：`python peririsk_agent.py`（可带提示词参数）
    - **Web 界面**：`python -m streamlit run app.py`（浏览器里选患者、看思考过程和报告）
